@@ -1,0 +1,3386 @@
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>  
+  </head>
+    <style type="text/css">
+
+	<style type="text/css">
+	.TFtable{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+	
+	/* provide some minimal visual accomodation for IE8 and below */
+	.TFtable tr{
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the ODD background rows  */
+	.TFtable tr:nth-child(odd){ 
+		background: white;
+	}
+	/*  Define the background color for all the EVEN background rows  */
+	.TFtable tr:nth-child(even){
+		background:  	#f5f5f5;
+	}
+</style>
+
+
+    </style>
+
+
+
+
+  <body>
+  	  <script>
+
+  	  function padDigits(number, digits) 
+  	  {
+    		return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+	  }
+
+      var percentValue = function(val, minVal1,maxVal1,minVal2, maxVal2)
+      {
+      	return ((val - minVal1) * (maxVal2 - minVal2) + minVal2 * maxVal1 - minVal1 * minVal2) / (maxVal1 - minVal1);
+      }
+
+      var convertBase = function(val, base1, base2) 
+      {
+	    if (typeof(val) == "number") {
+	        return parseInt(String(val)).toString(base2);
+	    } else {
+	        return parseInt(val.toString(), base1).toString(base2)
+	    };
+	  }
+
+      var socket = io.connect();
+
+	socket.on('message', function(data){
+
+
+		//adica ( 69+5 ) * 2
+		var Inp_num_0 = "0x" + data.slice(148,150).toUpperCase();
+		$('#Inp_num_0').text(Inp_num_0);
+		var Inp_num_1 = "0x" + data.slice(150,152).toUpperCase();
+		$('#Inp_num_1').text(Inp_num_1);
+		var Inp_num_2 = "0x" + data.slice(152,154).toUpperCase();
+		$('#Inp_num_2').text(Inp_num_2);
+		var Inp_num_3 = "0x" + data.slice(154,156).toUpperCase();
+		$('#Inp_num_3').text(Inp_num_3);
+		var Inp_num_4 = "0x" + data.slice(156,158).toUpperCase();
+		$('#Inp_num_4').text(Inp_num_4);
+		var Inp_num_5 = "0x" + data.slice(158,160).toUpperCase();
+		$('#Inp_num_5').text(Inp_num_5);
+		var Inp_num_6 = "0x" + data.slice(160,162).toUpperCase();
+		$('#Inp_num_6').text(Inp_num_6);
+		var Inp_num_7 = "0x" + data.slice(162,164).toUpperCase();
+		$('#Inp_num_7').text(Inp_num_7);
+		var Inp_num_8 = "0x" + data.slice(164,166).toUpperCase();
+		$('#Inp_num_8').text(Inp_num_8);
+		var Inp_num_9 = "0x" + data.slice(166,168).toUpperCase();
+		$('#Inp_num_9').text(Inp_num_9);
+		var Inp_num_10 = "0x" + data.slice(168,170).toUpperCase();
+		$('#Inp_num_10').text(Inp_num_10);
+		var Inp_num_11 = "0x" + data.slice(170,172).toUpperCase();
+		$('#Inp_num_11').text(Inp_num_11);
+
+		var Out_num_0 = "0x" + data.slice(172,174).toUpperCase();
+		$('#Out_num_0').text(Out_num_0);
+		var Out_num_1 = "0x" + data.slice(172,174).toUpperCase();
+		$('#Out_num_1').text(Out_num_1);
+		var Out_num_2 = "0x" + data.slice(172,174).toUpperCase();
+		$('#Out_num_2').text(Out_num_2);
+		var Out_num_3 = "0x" + data.slice(172,174).toUpperCase();
+		$('#Out_num_3').text(Out_num_3);
+		var Out_num_4 = "0x" + data.slice(172,174).toUpperCase();
+		$('#Out_num_4').text(Out_num_4);
+		var Out_num_5 = "0x" + data.slice(172,174).toUpperCase();
+		$('#Out_num_5').text(Out_num_5);
+
+		var mansa_activa_numerice = "0x" + data.slice(174,176).toUpperCase();
+		$('#mansa_activa_numerice').text(mansa_activa_numerice);
+		var mansa_activa_forta = "0x" + data.slice(176,178).toUpperCase();
+		$('#mansa_activa_forta').text(mansa_activa_forta);
+		var mansa_activa_viteza = "0x" + data.slice(178,180).toUpperCase();
+		$('#mansa_activa_viteza').text(mansa_activa_viteza);
+		var viteza_impusa = parseInt(data.slice(178,180),16);
+		$('#viteza_impusa').text(viteza_impusa);
+
+
+
+//////////////////////////////icol//////////////////////////////////////////////////
+		var ucat = parseInt(data.slice(192,194), 16);
+		$('#ucat').text(percentValue(ucat, 0,255,0,50).toFixed(2));
+
+		var usa =   parseInt(data.slice(194,196), 16);
+		$('#usa').text(percentValue(usa, 0,255,0,777).toFixed(2));
+		
+		var icat =   parseInt(data.slice(196,198), 16);
+ 		$('#icat').text( percentValue(icat, 0,255,0,777).toFixed(2));
+		
+		var itren  =   parseInt(data.slice(198,200), 16);
+		$('#itren').text(percentValue(itren, 0,255,0,933).toFixed(2));
+		
+		var ibat  =   parseInt(data.slice(200,202), 16);
+ 		$('#ibat').text(percentValue(ibat, 0,172,-25,25).toFixed(2));
+
+		var p_cg = parseInt(data.slice(202,204), 10);
+		var display_p_cg ;
+		// if (p_cg<26) display_p_cg = 0;
+		// else
+		// {
+		// 	var data  = parseInt(data.slice(202,204),16);
+		// 	display_p_cg = percentValue(data,26,255,0,12.72).toFixed(2);
+		// }
+		// $('#p_cg').text(display_p_cg);
+
+
+		var vit1_ms = parseInt(data.slice(206,208),16);
+		var vit1_ls = parseInt(data.slice(204,206),16);
+		var bin_ms_vit1 = padDigits(Number(parseInt(vit1_ms,16)).toString(2),8).slice(5,8);
+		var bin_ls_vit1 = padDigits(Number(parseInt(vit1_ls,16)).toString(2),8);
+		var bin_vit1 = bin_ms_vit1 + bin_ls_vit1;
+		var vit1 = (parseInt(bin_vit1,2)/10).toFixed(1);
+	    $('#vit1').text(vit1);
+
+		var vit2_ms = parseInt(data.slice(210,212),16);
+		var vit2_ls = parseInt(data.slice(208,210),16);
+		var bin_ms_vit2 = padDigits(Number(parseInt(vit2_ms,16)).toString(2),8).slice(5,8);
+		var bin_ls_vit2 = padDigits(Number(parseInt(vit2_ls,16)).toString(2),8);
+		var bin_vit2 = bin_ms_vit2 + bin_ls_vit2;
+		var vit2 = (parseInt(bin_vit2,2)/10).toFixed(1);
+		$('#vit2').text(vit1);
+
+
+		var temp_trafo2 = parseInt(data.slice(212,214),16);
+		$('#ibat').text(percentValue(ibat, 26,134,-50,100).toFixed(2));
+
+		var stare_forta = "0x" + data.slice(214,216).toUpperCase();
+		$('#stare_forta').text(stare_forta);
+
+		var stare_tractiune = "0x" + data.slice(216,218).toUpperCase();
+		$('#stare_tractiune').text(stare_tractiune);
+
+		var turatie_min_trac =  data.slice(220,222) + data.slice(218,220);
+		$('#turatie_min_trac').text(percentValue(turatie_min_trac, 0,32767,0,8000).toFixed(1));
+
+		var turatie_max_trac =  data.slice(224,226) + data.slice(222,224);
+		$('#turatie_min_trac').text(percentValue(turatie_max_trac, 0,32767,0,8000).toFixed(1));
+
+		var turatie_max_notrac =  data.slice(228,230) + data.slice(226,228);
+		$('#turatie_max_notrac').text(percentValue(turatie_max_notrac, 0,32767,0,8000).toFixed(1));
+
+		var info1 = "0x" + data.slice(230,232).toUpperCase();
+		$('#info1').text(info1);
+
+		var info2 = "0x" + data.slice(232,234).toUpperCase();
+		$('#info2').text(info2);
+
+		var forta_cda_icol =  data.slice(236,238) + data.slice(234,236);
+		$('#forta_cda_icol').text(percentValue(forta_cda_icol, -2550,4850,225.0,485.0).toFixed(1));
+
+		var info3 = "0x" + data.slice(238,240).toUpperCase();
+		$('#info3').text(info3);
+
+		var ack_tdd = "0x" + data.slice(240,242).toUpperCase();
+		$('#ack_tdd').text(ack_tdd);
+
+		var can_def = "0x" + data.slice(242,244).toUpperCase();
+		$('#can_def').text(can_def);
+
+		var rezerva = "0x" + data.slice(244,246).toUpperCase();
+		$('#rezerva').text(rezerva);
+
+		///////////        s1         ////////////
+
+		var s1_stare_ceta = "0x" + data.slice(246,248).toUpperCase();
+		$('#s1_stare_ceta').text(s1_stare_ceta);
+
+		var s1_stare_stare = "0x" + data.slice(248,250).toUpperCase();
+		$('#s1_stare_stare').text(s1_stare_stare);
+
+		var s1_stare_4qc3ph = "0x" + data.slice(250,252).toUpperCase();
+		$('#s1_stare_4qc3ph').text(s1_stare_4qc3ph);
+
+		var s1_bloc_soft = "0x" + data.slice(252,254).toUpperCase();
+		$('#s1_bloc_soft').text(s1_bloc_soft);
+
+		var s1_bloc_hard = "0x" + data.slice(254,256).toUpperCase();
+		$('#s1_bloc_hard').text(s1_bloc_hard);
+
+		var s1_decon_hard = "0x" + data.slice(256,258).toUpperCase();
+		$('#s1_decon_hard').text(s1_decon_hard);
+
+		var s1_inp_num = "0x" + data.slice(258,260).toUpperCase();
+		$('#s1_inp_num').text(s1_inp_num);
+
+		var s1_tip_ceta = "0x" + data.slice(260,262).toUpperCase();
+		$('#s1_tip_ceta').text(s1_tip_ceta);
+
+		var s1_u_cat = parseInt(data.slice(262,264),16);
+		$('#s1_u_cat').text(percentValue(s1_u_cat, 0,255,0,39.25).toFixed(1));
+
+		var s1_i_in_s1_irfm = 0;
+		if (s1_stare_ceta == "0x40")
+		{
+			s1_i_in_s1_irfm = parseInt(data.slice(264,266),16);
+			$('#s1_i_in_s1_irfm').text(percentValue(s1_i_in_s1_irfm, 0,255,0,1600).toFixed(1));
+			$('#s1_irfm').text(percentValue(s1_i_in_s1_irfm, 0,255,0,2220).toFixed(1));
+
+
+		}else
+		{
+			s1_i_in_s1_irfm = parseInt(data.slice(264,266),16);
+			$('#s1_i_in_s1_irfm').text(percentValue(s1_i_in_s1_irfm, 0,255,0,2220).toFixed(1));
+			$('#s1_irfm').text(percentValue(s1_i_in_s1_irfm, 0,255,0,2220).toFixed(1));
+
+		}
+
+		var s1_u_cc =  parseInt(data.slice(266,268),16);
+		$('#s1_u_cc').text(percentValue(s1_u_cc, 0,255,0,2500).toFixed(1));
+
+		var s1_u_sa = parseInt(data.slice(268,270),16);
+		$('#s1_u_sa').text(percentValue(s1_u_sa, 0,255,0,39.25).toFixed(1));
+
+		var s1_i_out =  data.slice(272,274) + data.slice(270,272);
+		$('#s1_i_out').text(percentValue(s1_i_out, 0,32767,0,39.25).toFixed(1));
+
+		var s1_v_cda =  data.slice(276,278) + data.slice(274,276);
+		$('#s1_v_cda').text(percentValue(s1_v_cda, 0,32767,0,100).toFixed(1));
+
+		var s1_turatie =  data.slice(280,282) + data.slice(278,280);
+		$('#s1_turatie').text(percentValue(s1_turatie, 0,32767,0,8000).toFixed(1));
+
+		var s1_forta_cda =  data.slice(284,286) + data.slice(282,284);
+		$('#s1_forta_cda').text(percentValue(s1_forta_cda, -2550,4850,255.0,485.0).toFixed(1));
+
+		var s1_cauza_bloc_hard, s1_cauza_decon, s1_cauza_bloc_soft,s1_def_preinc;
+		if (s1_stare_ceta == "0xE0" || s1_stare_ceta == "0xF0")
+		{
+			s1_cauza_bloc_hard = parseInt(data.slice(286,288),16);
+			$('#s1_cauza_bloc_hard').text(percentValue(s1_cauza_bloc_hard, -32767,32767,-4525,4525).toFixed(1));
+			s1_cauza_decon = parseInt(data.slice(288,290),16);
+			$('#s1_cauza_decon').text(percentValue(s1_cauza_decon, -32767,32767,-4525,4525).toFixed(1));
+			s1_cauza_bloc_soft = parseInt(data.slice(290,292),16);
+			$('#s1_cauza_bloc_soft').text(percentValue(s1_cauza_bloc_soft, 0,32767,0,4525).toFixed(1));
+			s1_def_preinc = parseInt(data.slice(292,294),16);
+			$('#s1_def_preinc').text(percentValue(s1_def_preinc, 0,32767,0,4525).toFixed(1));
+			$('#s1_iq_mas').text("-");
+			$('#s1_id_mas').text("-");
+		}else
+		{
+			
+			var s1_iq_mas =  data.slice(288,290) + data.slice(286,288);
+			$('#s1_iq_mas').text(percentValue(s1_iq_mas, -32767,32767,-4525,4525).toFixed(1));
+			var s1_id_mas =  data.slice(292,294) + data.slice(290,292);
+			$('#s1_id_mas').text(percentValue(s1_id_mas, 0,32767,0,4525).toFixed(1));
+			$('#s1_cauza_bloc_hard').text("fara cauza");
+			$('#s1_cauza_decon').text("fara cauza");
+			$('#s1_cauza_bloc_soft').text("fara cauza");
+			$('#s1_cauza_def_preinc').text("fara cauza");
+		}
+		/////////////   s2   ////////////////
+
+		var s2_stare_ceta =  "0x" + data.slice(294,296).toUpperCase();
+		$('#s2_stare_ceta').text(s2_stare_ceta);
+
+		var s2_stare_stare = "0x" + data.slice(296,298).toUpperCase();
+		$('#s2_stare_stare').text(s2_stare_stare);
+
+		var s2_stare_4qc3ph = "0x" + data.slice(298,300).toUpperCase();
+		$('#s2_stare_4qc3ph').text(s2_stare_4qc3ph);
+
+		var s2_bloc_soft = "0x" + data.slice(300,302).toUpperCase();
+		$('#s2_bloc_soft').text(s2_bloc_soft);
+
+		var s2_bloc_hard = "0x" + data.slice(302,304).toUpperCase();
+		$('#s2_bloc_hard').text(s2_bloc_hard);
+
+		var s2_decon_hard = "0x" + data.slice(304,306).toUpperCase();
+		$('#s2_decon_hard').text(s2_decon_hard);
+
+		var s2_inp_num = "0x" + data.slice(306,308).toUpperCase();
+		$('#s2_inp_num').text(s2_inp_num);
+
+		var s2_tip_ceta = "0x" + data.slice(308,310).toUpperCase();
+		$('#s2_tip_ceta').text(s2_tip_ceta);
+
+
+		var s2_u_cat = parseInt(data.slice(310,312),16);
+		$('#s2_u_cat').text(percentValue(s2_u_cat, 0,255,0,39.25).toFixed(1));
+
+		var s2_i_in_s2_irfm = 0;
+		if (s2_stare_ceta == "0x40")
+		{
+			s2_i_in_s2_irfm = parseInt(data.slice(312,314),16);
+			$('#s2_i_in_s2_irfm').text(percentValue(s2_i_in_s2_irfm, 0,255,0,1600).toFixed(1));
+			$('#s2_irfm').text(percentValue(s2_i_in_s2_irfm, 0,255,0,2220).toFixed(1));
+
+		}else
+		{
+			s2_i_in_s2_irfm = parseInt(data.slice(312,314),16);
+			$('#s2_i_in_s2_irfm').text(percentValue(s2_i_in_s2_irfm, 0,255,0,2220).toFixed(1));
+			$('#s2_irfm').text(percentValue(s2_i_in_s2_irfm, 0,255,0,2220).toFixed(1));
+		}
+
+		var s2_u_cc =  parseInt(data.slice(314,316),16);
+		$('#s2_u_cc').text(percentValue(s2_u_cc, 0,255,0,2500).toFixed(1));
+
+		var s2_u_sa = parseInt(data.slice(316,318),16);
+		$('#s2_u_sa').text(percentValue(s2_u_sa, 0,255,0,39.25).toFixed(1));
+
+		var s2_i_out =  data.slice(320,322) + data.slice(318,320);
+		$('#s2_i_out').text(percentValue(s2_i_out, 0,32767,0,39.25).toFixed(1));
+
+		var s2_v_cda =  data.slice(324,326) + data.slice(322,324);
+		$('#s2_v_cda').text(percentValue(s2_v_cda, 0,32767,0,100).toFixed(1));
+
+		var s2_turatie =  data.slice(328,330) + data.slice(326,328);
+		$('#s2_turatie').text(percentValue(s2_turatie, 0,32767,0,8000).toFixed(1));
+
+		var s2_forta_cda =  data.slice(332,334) + data.slice(330,332);
+		$('#s2_forta_cda').text(percentValue(s2_forta_cda, -2550,4850,255.0,485.0).toFixed(1));
+
+		var s2_cauza_bloc_hard, s2_cauza_decon, s2_cauza_bloc_soft,s2_def_preinc;
+		if (s2_stare_ceta == "0xE0" || s2_stare_ceta == "0xF0")
+		{
+			s2_cauza_bloc_hard = parseInt(data.slice(334,336),16);
+			$('#s2_cauza_bloc_hard').text(percentValue(s2_cauza_bloc_hard, -32767,32767,-4525,4525).toFixed(1));
+			s2_cauza_decon = parseInt(data.slice(336,338),16);
+			$('#s2_cauza_decon').text(percentValue(s2_cauza_decon, -32767,32767,-4525,4525).toFixed(1));
+			s2_cauza_bloc_soft = parseInt(data.slice(338,340),16);
+			$('#s2_cauza_bloc_soft').text(percentValue(s2_cauza_bloc_soft, 0,32767,0,4525).toFixed(1));
+			s2_def_preinc = parseInt(data.slice(340,342),16);
+			$('#s2_def_preinc').text(percentValue(s2_def_preinc, 0,32767,0,4525).toFixed(1));
+			$('#s2_iq_mas').text("-");
+			$('#s2_id_mas').text("-");
+		}else
+		{
+			
+			var s2_iq_mas =  data.slice(336,338) + data.slice(334,336);
+			$('#s2_iq_mas').text(percentValue(s2_iq_mas, -32767,32767,-4525,4525).toFixed(1));
+			var s2_id_mas =  data.slice(340,342) + data.slice(338,340);
+			$('#s2_iq_mas').text(percentValue(s2_iq_mas, 0,32767,0,4525).toFixed(1));
+			
+			$('#s2_cauza_bloc_hard').text("fara cauza");
+			$('#s2_cauza_decon').text("fara cauza");
+			$('#s2_cauza_bloc_soft').text("fara cauza");
+			$('#s2_cauza_def_preinc').text("fara cauza");
+		}
+
+		//////////    s3    //////////
+
+		var s3_stare_ceta =  "0x" + data.slice(342,344).toUpperCase();
+		$('#s3_stare_ceta').text(s3_stare_ceta);
+
+		var s3_stare_stare = "0x" + data.slice(344,346).toUpperCase();
+		$('#s3_stare_stare').text(s3_stare_stare);
+
+		var s3_stare_4qc3ph = "0x" + data.slice(346,348).toUpperCase();
+		$('#s3_stare_4qc3ph').text(s3_stare_4qc3ph);
+
+		var s3_bloc_soft = "0x" + data.slice(348,350).toUpperCase();
+		$('#s3_bloc_soft').text(s3_bloc_soft);
+
+		var s3_bloc_hard = "0x" + data.slice(350,352).toUpperCase();
+		$('#s3_bloc_hard').text(s3_bloc_hard);
+
+		var s3_decon_hard = "0x" + data.slice(352,354).toUpperCase();
+		$('#s3_decon_hard').text(s3_decon_hard);
+
+		var s3_inp_num = "0x" + data.slice(354,356).toUpperCase();
+		$('#s3_inp_num').text(s3_inp_num);
+
+		var s3_tip_ceta = "0x" + data.slice(356,358).toUpperCase();
+		$('#s3_tip_ceta').text(s3_tip_ceta);
+
+
+		var s3_u_cat = parseInt(data.slice(358,360),16);
+		$('#s3_u_cat').text(percentValue(s3_u_cat, 0,255,0,39.25).toFixed(1));
+
+		var s3_i_in_s3_irfm = 0;
+		if (s3_stare_ceta == "0x40")
+		{
+			s3_i_in_s3_irfm = parseInt(data.slice(360,362),16);
+			$('#s3_i_in_s3_irfm').text(percentValue(s3_i_in_s3_irfm, 0,255,0,1600).toFixed(1));
+			$('#s3_irfm').text(percentValue(s3_irfm, 0,255,0,2220).toFixed(1));
+
+		}else
+		{
+			s3_i_in_s3_irfm = parseInt(data.slice(360,362),16);
+			$('#s3_i_in_s3_irfm').text(percentValue(s3_i_in_s3_irfm, 0,255,0,2220).toFixed(1));
+			$('#s3_irfm').text(percentValue(s3_i_in_s3_irfm, 0,255,0,2220).toFixed(1));
+		}
+
+		var s3_u_cc =  parseInt(data.slice(362,364),16);
+		$('#s3_u_cc').text(percentValue(s3_u_cc, 0,255,0,2500).toFixed(1));
+
+		var s3_u_sa = parseInt(data.slice(364,366),16);
+		$('#s3_u_sa').text(percentValue(s3_u_sa, 0,255,0,39.25).toFixed(1));
+ 
+		var s3_i_out =  data.slice(368,370) + data.slice(366,368);
+		$('#s3_i_out').text(percentValue(s3_i_out, 0,32767,0,39.25).toFixed(1));
+
+		var s3_v_cda =  data.slice(372,374) + data.slice(370,372);
+		$('#s3_v_cda').text(percentValue(s3_v_cda, 0,32767,0,100).toFixed(1));
+
+		var s3_turatie =  data.slice(376,378) + data.slice(374,376);
+		$('#s3_turatie').text(percentValue(s3_turatie, 0,32767,0,8000).toFixed(1));
+
+		var s3_forta_cda =  data.slice(380,382) + data.slice(378,380);
+		$('#s3_forta_cda').text(percentValue(s3_forta_cda, -2550,4850,255.0,485.0).toFixed(1));
+
+		var s3_cauza_bloc_hard, s3_cauza_decon, s3_cauza_bloc_soft,s3_def_preinc;
+		if (s3_stare_ceta == "0xE0" || s3_stare_ceta == "0xF0")
+		{
+			s3_cauza_bloc_hard = parseInt(data.slice(382,384),16);
+			$('#s3_cauza_bloc_hard').text(percentValue(s3_cauza_bloc_hard, -32767,32767,-4525,4525).toFixed(1));
+			s3_cauza_decon = parseInt(data.slice(384,386),16);
+			$('#s3_cauza_decon').text(percentValue(s3_cauza_decon, -32767,32767,-4525,4525).toFixed(1));
+			s3_cauza_bloc_soft = parseInt(data.slice(386,388),16);
+			$('#s3_cauza_bloc_soft').text(percentValue(s3_cauza_bloc_soft, 0,32767,0,4525).toFixed(1));
+			s3_def_preinc = parseInt(data.slice(388,390),16);
+			$('#s3_def_preinc').text(percentValue(s3_def_preinc, 0,32767,0,4525).toFixed(1));
+			$('#s3_iq_mas').text("-");
+			$('#s3_id_mas').text("-");
+		}else
+		{
+			
+			var s3_iq_mas =  data.slice(384,386) + data.slice(382,384);
+			$('#s3_iq_mas').text(percentValue(s3_iq_mas, -32767,32767,-4525,4525).toFixed(1));
+
+			var s3_id_mas =  data.slice(388,390) + data.slice(386,388);
+			$('#s3_iq_mas').text(percentValue(s3_iq_mas, 0,32767,0,4525).toFixed(1));
+			$('#s3_cauza_bloc_hard').text("fara cauza");
+			$('#s3_cauza_decon').text("fara cauza");
+			$('#s3_cauza_bloc_soft').text("fara cauza");
+			$('#s3_cauza_def_preinc').text("fara cauza");
+		}
+
+		//////////     s4    /////////
+
+		var s4_stare_ceta =  "0x" + data.slice(390,392).toUpperCase();
+		$('#s4_stare_ceta').text(s4_stare_ceta);
+
+		var s4_stare_stare = "0x" + data.slice(392,394).toUpperCase();
+		$('#s4_stare_stare').text(s4_stare_stare);
+
+		var s4_stare_4qc3ph = "0x" + data.slice(394,396).toUpperCase();
+		$('#s4_stare_4qc3ph').text(s4_stare_4qc3ph);
+
+		var s4_bloc_soft = "0x" + data.slice(396,398).toUpperCase();
+		$('#s4_bloc_soft').text(s4_bloc_soft);
+
+		var s4_bloc_hard = "0x" + data.slice(398,400).toUpperCase();
+		$('#s4_bloc_hard').text(s4_bloc_hard);
+
+		var s4_decon_hard = "0x" + data.slice(400,402).toUpperCase();
+		$('#s4_decon_hard').text(s4_decon_hard);
+
+		var s4_inp_num = "0x" + data.slice(402,404).toUpperCase();
+		$('#s4_inp_num').text(s4_inp_num);
+
+		var s4_tip_ceta = "0x" + data.slice(404,406).toUpperCase();
+		$('#s4_tip_ceta').text(s4_tip_ceta);
+
+
+		var s4_u_cat = parseInt(data.slice(406,408),16);
+		$('#s4_u_cat').text(percentValue(s4_u_cat, 0,255,0,39.25).toFixed(1));
+
+		var s4_i_in_s4_irfm = 0;
+		if (s4_stare_ceta == "0x40")
+		{
+			s4_i_in_s4_irfm = parseInt(data.slice(408,410),16);
+			$('#s4_i_in_s4_irfm').text(percentValue(s4_i_in_s4_irfm, 0,255,0,1600).toFixed(1));
+			$('#s4_irfm').text(percentValue(s4_i_in_s4_irfm, 0,255,0,2220).toFixed(1));
+
+		}else
+		{
+			s4_i_in_s4_irfm = parseInt(data.slice(408,410),16);
+			$('#s4_i_in_s4_irfm').text(percentValue(s4_i_in_s4_irfm, 0,255,0,2220).toFixed(1));
+			$('#s4_irfm').text(percentValue(s4_i_in_s4_irfm, 0,255,0,2220).toFixed(1));
+		}
+
+		var s4_u_cc =  parseInt(data.slice(410,412),16);
+		$('#s4_u_cc').text(percentValue(s4_u_cc, 0,255,0,2500).toFixed(1));
+
+		var s4_u_sa = parseInt(data.slice(412,414),16);
+		$('#s4_u_sa').text(percentValue(s4_u_sa, 0,255,0,39.25).toFixed(1));
+
+		var s4_i_out =  data.slice(416,418) + data.slice(414,416);
+		$('#s4_i_out').text(percentValue(s4_i_out, 0,32767,0,39.25).toFixed(1));
+
+		var s4_v_cda =  data.slice(420,422) + data.slice(418,420);
+		$('#s4_v_cda').text(percentValue(s4_v_cda, 0,32767,0,100).toFixed(1));
+
+		var s4_turatie =  data.slice(424,426) + data.slice(422,424);
+		$('#s4_turatie').text(percentValue(s4_turatie, 0,32767,0,8000).toFixed(1));
+
+		var s4_forta_cda =  data.slice(428,430) + data.slice(426,428);
+		$('#s4_forta_cda').text(percentValue(s4_forta_cda, -2550,4850,255.0,485.0).toFixed(1));
+
+		var s4_cauza_bloc_hard, s4_cauza_decon, s4_cauza_bloc_soft,s4_def_preinc;
+		if (s4_stare_ceta == "0xE0" || s4_stare_ceta == "0xF0")
+		{
+			s4_cauza_bloc_hard = parseInt(data.slice(430,432),16);
+			$('#s4_cauza_bloc_hard').text(percentValue(s4_cauza_bloc_hard, -32767,32767,-4525,4525).toFixed(1));
+			s4_cauza_decon = parseInt(data.slice(432,434),16);
+			$('#s4_cauza_decon').text(percentValue(s4_cauza_decon, -32767,32767,-4525,4525).toFixed(1));
+			s4_cauza_bloc_soft = parseInt(data.slice(434,436),16);
+			$('#s4_cauza_bloc_soft').text(percentValue(s4_cauza_bloc_soft, 0,32767,0,4525).toFixed(1));
+			s4_def_preinc = parseInt(data.slice(436,438),16);
+			$('#s4_def_preinc').text(percentValue(s4_def_preinc, 0,32767,0,4525).toFixed(1));
+			$('#s4_iq_mas').text("-");
+			$('#s4_id_mas').text("-");
+		}else
+		{
+			
+			var s4_iq_mas =  data.slice(432,434) + data.slice(430,432);
+			$('#s4_iq_mas').text(percentValue(s4_iq_mas, -32767,32767,-4525,4525).toFixed(1));
+			var s4_id_mas =  data.slice(436,438) + data.slice(434,436);
+			$('#s4_iq_mas').text(percentValue(s4_iq_mas, 0,32767,0,4525).toFixed(1));
+			$('#s4_cauza_bloc_hard').text("fara cauza");
+			$('#s4_cauza_decon').text("fara cauza");
+			$('#s4_cauza_bloc_soft').text("fara cauza");
+			$('#s4_cauza_def_preinc').text("fara cauza");
+		}
+
+		/////////////////////   s5   //////////////////////
+
+		var s5_stare_ceta =  "0x" + data.slice(438,440).toUpperCase();
+		$('#s5_stare_ceta').text(s5_stare_ceta);
+
+		var s5_stare_stare = "0x" + data.slice(440,442).toUpperCase();
+		$('#s5_stare_stare').text(s5_stare_stare);
+
+		var s5_stare_4qc3ph = "0x" + data.slice(442,444).toUpperCase();
+		$('#s5_stare_4qc3ph').text(s5_stare_4qc3ph);
+
+		var s5_bloc_soft = "0x" + data.slice(444,446).toUpperCase();
+		$('#s5_bloc_soft').text(s5_bloc_soft);
+
+		var s5_bloc_hard = "0x" + data.slice(446,448).toUpperCase();
+		$('#s5_bloc_hard').text(s5_bloc_hard);
+
+		var s5_decon_hard = "0x" + data.slice(448,450).toUpperCase();
+		$('#s5_decon_hard').text(s5_decon_hard);
+
+		var s5_inp_num = "0x" + data.slice(450,452).toUpperCase();
+		$('#s5_inp_num').text(s5_inp_num);
+
+		var s5_tip_ceta = "0x" + data.slice(452,454).toUpperCase();
+		$('#s5_tip_ceta').text(s5_tip_ceta);
+
+
+		var s5_u_cat = parseInt(data.slice(454,456),16);
+		$('#s5_u_cat').text(percentValue(s5_u_cat, 0,255,0,39.25).toFixed(1));
+
+		var s5_i_in_s5_irfm = 0;
+		if (s5_stare_ceta == "0x40")
+		{
+			s5_i_in_s5_irfm = parseInt(data.slice(456,458),16);
+			$('#s5_i_in_s5_irfm').text(percentValue(s5_i_in_s5_irfm, 0,255,0,1600).toFixed(1));
+			$('#s5_irfm').text(percentValue(s5_i_in_s5_irfm, 0,255,0,2220).toFixed(1));
+
+		}else
+		{
+			s5_i_in_s5_irfm = parseInt(data.slice(456,458),16);
+			$('#s5_i_in_s5_irfm').text(percentValue(s5_i_in_s5_irfm, 0,255,0,2220).toFixed(1));
+			$('#s5_irfm').text(percentValue(s5_i_in_s5_irfm, 0,255,0,2220).toFixed(1));
+		}
+
+		var s5_u_cc =  parseInt(data.slice(458,460),16);
+		$('#s5_u_cc').text(percentValue(s5_u_cc, 0,255,0,2500).toFixed(1));
+
+		var s5_u_sa = parseInt(data.slice(460,462),16);
+		$('#s5_u_sa').text(percentValue(s5_u_sa, 0,255,0,39.25).toFixed(1));
+
+		var s5_i_out =  data.slice(464,466) + data.slice(462,464);
+		$('#s5_i_out').text(percentValue(s5_i_out, 0,32767,0,39.25).toFixed(1));
+
+		var s5_v_cda =  data.slice(468,470) + data.slice(466,468);
+		$('#s5_v_cda').text(percentValue(s5_v_cda, 0,32767,0,100).toFixed(1));
+
+		var s5_turatie =  data.slice(472,474) + data.slice(470,472);
+		$('#s5_turatie').text(percentValue(s5_turatie, 0,32767,0,8000).toFixed(1));
+
+		var s5_forta_cda =  data.slice(476,478) + data.slice(474,476);
+		$('#s5_forta_cda').text(percentValue(s5_forta_cda, -2550,4850,255.0,485.0).toFixed(1));
+
+		var s5_cauza_bloc_hard, s5_cauza_decon, s5_cauza_bloc_soft,s5_def_preinc;
+		if (s5_stare_ceta == "0xE0" || s5_stare_ceta == "0xF0")
+		{
+			s5_cauza_bloc_hard = parseInt(data.slice(478,480),16);
+			$('#s5_cauza_bloc_hard').text(percentValue(s5_cauza_bloc_hard, -32767,32767,-4525,4525).toFixed(1));
+			s5_cauza_decon = parseInt(data.slice(482,484),16);
+			$('#s5_cauza_decon').text(percentValue(s5_cauza_decon, -32767,32767,-4525,4525).toFixed(1));
+			s5_cauza_bloc_soft = parseInt(data.slice(484,486),16);
+			$('#s5_cauza_bloc_soft').text(percentValue(s5_cauza_bloc_soft, 0,32767,0,4525).toFixed(1));
+			s5_def_preinc = parseInt(data.slice(486,488),16);
+			$('#s5_def_preinc').text(percentValue(s5_def_preinc, 0,32767,0,4525).toFixed(1));
+			$('#s5_iq_mas').text("-");
+			$('#s5_id_mas').text("-");
+		}else
+		{
+			var s5_iq_mas =  data.slice(480,482) + data.slice(478,480);
+			$('#s5_iq_mas').text(percentValue(s5_iq_mas, -32767,32767,-4525,4525).toFixed(1));
+			var s5_id_mas =  data.slice(484,486) + data.slice(482,484);
+			$('#s5_iq_mas').text(percentValue(s5_iq_mas, 0,32767,0,4525).toFixed(1));
+			$('#s5_cauza_bloc_hard').text("fara cauza");
+			$('#s5_cauza_decon').text("fara cauza");
+			$('#s5_cauza_bloc_soft').text("fara cauza");
+			$('#s5_cauza_def_preinc').text("fara cauza");
+		}
+
+
+		////////////////////     s6     /////////////////////
+
+		var s6_stare_ceta =  "0x" + data.slice(486,488).toUpperCase();
+		$('#s6_stare_ceta').text(s6_stare_ceta);
+
+		var s6_stare_stare = "0x" + data.slice(488,490).toUpperCase();
+		$('#s6_stare_stare').text(s6_stare_stare);
+
+		var s6_stare_4qc3ph = "0x" + data.slice(490,492).toUpperCase();
+		$('#s6_stare_4qc3ph').text(s6_stare_4qc3ph);
+
+		var s6_bloc_soft = "0x" + data.slice(492,494).toUpperCase();
+		$('#s6_bloc_soft').text(s6_bloc_soft);
+
+		var s6_bloc_hard = "0x" + data.slice(494,496).toUpperCase();
+		$('#s6_bloc_hard').text(s6_bloc_hard);
+
+		var s6_decon_hard = "0x" + data.slice(496,498).toUpperCase();
+		$('#s6_decon_hard').text(s6_decon_hard);
+
+		var s6_inp_num = "0x" + data.slice(498,500).toUpperCase();
+		$('#s6_inp_num').text(s6_inp_num);
+
+		var s6_tip_ceta = "0x" + data.slice(500,502).toUpperCase();
+		$('#s6_tip_ceta').text(s6_tip_ceta);
+
+
+		var s6_u_cat = parseInt(data.slice(502,504),16);
+		$('#s6_u_cat').text(percentValue(s6_u_cat, 0,255,0,39.25).toFixed(1));
+
+		var s6_i_in_s6_irfm = 0;
+		if (s6_stare_ceta == "0x40")
+		{
+			s6_i_in_s6_irfm = parseInt(data.slice(504,506),16);
+			$('#s6_i_in_s6_irfm').text(percentValue(s6_i_in_s6_irfm, 0,255,0,1600).toFixed(1));
+			$('#s6_irfm').text(percentValue(s6_i_in_s6_irfm, 0,255,0,2220).toFixed(1));
+
+		}else
+		{
+			s6_i_in_s6_irfm = parseInt(data.slice(504,506),16);
+			$('#s6_i_in_s6_irfm').text(percentValue(s6_i_in_s6_irfm, 0,255,0,2220).toFixed(1));
+			$('#s6_irfm').text(percentValue(s6_i_in_s6_irfm, 0,255,0,2220).toFixed(1));
+		}
+
+		var s6_u_cc =  parseInt(data.slice(506,508),16);
+		$('#s6_u_cc').text(percentValue(s6_u_cc, 0,255,0,2500).toFixed(1));
+
+		var s6_u_sa = parseInt(data.slice(508,510),16);
+		$('#s6_u_sa').text(percentValue(s6_u_sa, 0,255,0,39.25).toFixed(1));
+
+		var s6_i_out =  data.slice(512,514) + data.slice(510,512);
+		$('#s6_i_out').text(percentValue(s6_i_out, 0,32767,0,39.25).toFixed(1));
+
+		var s6_v_cda =  data.slice(516,518) + data.slice(514,516);
+		$('#s6_v_cda').text(percentValue(s6_v_cda, 0,32767,0,100).toFixed(1));
+
+		var s6_turatie =  data.slice(520,522) + data.slice(518,520);
+		$('#s6_turatie').text(percentValue(s6_turatie, 0,32767,0,8000).toFixed(1));
+
+		var s6_forta_cda =  data.slice(524,526) + data.slice(522,524);
+		$('#s6_forta_cda').text(percentValue(s6_forta_cda, -2550,4850,255.0,485.0).toFixed(1));
+
+		var s6_cauza_bloc_hard, s6_cauza_decon, s6_cauza_bloc_soft,s6_def_preinc;
+		if (s6_stare_ceta == "0xE0" || s6_stare_ceta == "0xF0")
+		{
+			s6_cauza_bloc_hard = parseInt(data.slice(526,528),16);
+			$('#s6_cauza_bloc_hard').text(percentValue(s6_cauza_bloc_hard, -32767,32767,-4525,4525).toFixed(1));
+			s6_cauza_decon = parseInt(data.slice(528,530),16);
+			$('#s6_cauza_decon').text(percentValue(s6_cauza_decon, -32767,32767,-4525,4525).toFixed(1));
+			s6_cauza_bloc_soft = parseInt(data.slice(530,532),16);
+			$('#s6_cauza_bloc_soft').text(percentValue(s6_cauza_bloc_soft, 0,32767,0,4525).toFixed(1));
+			s6_def_preinc = parseInt(data.slice(532,534),16);
+			$('#s6_def_preinc').text(percentValue(s6_def_preinc, 0,32767,0,4525).toFixed(1));
+			$('#s6_iq_mas').text("-");
+			$('#s6_id_mas').text("-");
+		}else
+		{
+		
+			var s6_iq_mas =  data.slice(528,530) + data.slice(526,528);
+			$('#s6_iq_mas').text(percentValue(s6_iq_mas, -32767,32767,-4525,4525).toFixed(1));
+			var s6_id_mas =  data.slice(532,534) + data.slice(530,532);
+			$('#s6_iq_mas').text(percentValue(s6_iq_mas, 0,32767,0,4525).toFixed(1));
+			$('#s6_cauza_bloc_hard').text("fara cauza");
+			$('#s6_cauza_decon').text("fara cauza");
+			$('#s6_cauza_bloc_soft').text("fara cauza");
+			$('#s6_cauza_def_preinc').text("fara cauza");
+		}
+
+
+		var identificator_mesaj_icol = data.slice(140,142)
+	    switch(identificator_mesaj_icol)
+	    {
+	    	case "00":
+	    		var s1_def_drv1 = "0x" + data.slice(550,552).toUpperCase();
+	    		$('#s1_def_drv1').text(s1_def_drv1);
+	    		var s1_stare_drv1 = "0x" + data.slice(552,554).toUpperCase();
+	    		$('#s1_stare_drv1').text(s1_stare_drv1);
+	    		var s1_temp_l1 =   parseInt(data.slice(554,556), 16);
+				$('#s1_temp_l1').text(percentValue(s1_temp_l1, -55,125,-55,125).toFixed(1));
+				var s1_temp_h1 =   parseInt(data.slice(556,558), 16);
+				$('#s1_temp_h1').text(percentValue(s1_temp_h1, -55,125,-55,125).toFixed(1));
+				
+				var s1_def_drv2 = "0x" + data.slice(558,560).toUpperCase();
+	    		$('#s1_def_drv2').text(s1_def_drv2);
+	    		var s1_stare_drv2 = "0x" + data.slice(560,562).toUpperCase();
+	    		$('#s1_stare_drv2').text(s1_stare_drv2);
+	    		var s1_temp_l2 =   parseInt(data.slice(562,564), 16);
+				$('#s1_temp_l2').text(percentValue(s1_temp_l2, -55,125,-55,125).toFixed(1));
+				var s1_temp_h2 =   parseInt(data.slice(564,566), 16);
+				$('#s1_temp_h2').text(percentValue(s1_temp_h2, -55,125,-55,125).toFixed(1));
+
+				var s1_def_drv3 = "0x" + data.slice(566,568).toUpperCase();
+	    		$('#s1_def_drv3').text(s1_def_drv3);
+	    		var s1_stare_drv3 = "0x" + data.slice(568,570).toUpperCase();
+	    		$('#s1_stare_drv3').text(s1_stare_drv3);
+	    		var s1_temp_l3 =   parseInt(data.slice(570,572), 16);
+				$('#s1_temp_l3').text(percentValue(s1_temp_l3, -55,125,-55,125).toFixed(1));
+				var s1_temp_h3 =   parseInt(data.slice(572,574), 16);
+				$('#s1_temp_h3').text(percentValue(s1_temp_h3, -55,125,-55,125).toFixed(1));
+
+				var s1_def_drv4 = "0x" + data.slice(574,576).toUpperCase();
+	    		$('#s1_def_drv4').text(s1_def_drv4);
+	    		var s1_stare_drv4 = "0x" + data.slice(576,578).toUpperCase();
+	    		$('#s1_stare_drv4').text(s1_stare_drv4);
+	    		var s1_temp_l4 =   parseInt(data.slice(578,580), 16);
+				$('#s1_temp_l4').text(percentValue(s1_temp_l4, -55,125,-55,125).toFixed(1));
+				var s1_temp_h4 =   parseInt(data.slice(580,582), 16);
+				$('#s1_temp_h4').text(percentValue(s1_temp_h4, -55,125,-55,125).toFixed(1));
+
+				var s1_def_drv5 = "0x" + data.slice(582,584).toUpperCase();
+	    		$('#s1_def_drv5').text(s1_def_drv5);
+	    		var s1_stare_drv5 = "0x" + data.slice(584,586).toUpperCase();
+	    		$('#s1_stare_drv5').text(s1_stare_drv5);
+	    		var s1_temp_l5 =   parseInt(data.slice(586,588), 16);
+				$('#s1_temp_l5').text(percentValue(s1_temp_l5, -55,125,-55,125).toFixed(1));
+				var s1_temp_h5 =   parseInt(data.slice(588,590), 16);
+				$('#s1_temp_h5').text(percentValue(s1_temp_h5, -55,125,-55,125).toFixed(1));
+
+				var s1_def_drv6 = "0x" + data.slice(590,592).toUpperCase();
+	    		$('#s1_def_drv6').text(s1_def_drv6);
+	    		var s1_stare_drv6 = "0x" + data.slice(592,594).toUpperCase();
+	    		$('#s1_stare_drv6').text(s1_stare_drv6);
+	    		var s1_temp_l6 =   parseInt(data.slice(594,596), 16);
+				$('#s1_temp_l6').text(percentValue(s1_temp_l6, -55,125,-55,125).toFixed(1));
+				var s1_temp_h6 =   parseInt(data.slice(596,598), 16);
+				$('#s1_temp_h6').text(percentValue(s1_temp_h6, -55,125,-55,125).toFixed(1));
+
+				var s1_u_drv =  "0x" + data.slice(598,600).toUpperCase();
+				$('#s1_u_drv').text(s1_u_drv);
+				var s1_dsp_drv =  "0x" + data.slice(600,602).toUpperCase();
+				$('#s1_dsp_drv').text(s1_dsp_drv);
+				var s1_trip_14 =  "0x" + data.slice(602,604).toUpperCase();
+				$('#s1_trip_14').text(s1_trip_14);
+				var s1_trip_56 =  "0x" + data.slice(604,606).toUpperCase();
+				$('#s1_trip_56').text(s1_trip_56);
+				var s1_stare_mm =  "0x" + data.slice(606,608).toUpperCase();
+				$('#s1_stare_mm').text(s1_stare_mm);
+				var s1_inp_63 =  "0x" + data.slice(608,610).toUpperCase();
+				$('#s1_inp_63').text(s1_inp_63);
+				var s1_defect_can_drv =  "0x" + data.slice(610,612).toUpperCase();
+				$('#s1_defect_can_drv').text(s1_defect_can_drv);
+				var s1_stare_abs =  "0x" + data.slice(612,614).toUpperCase();
+				$('#s1_stare_abs').text(s1_stare_abs);
+
+				var s1_temp_mt2 = parseInt(data.slice(614,616),16);
+				$('#s1_temp_mt2').text(percentValue(s1_temp_mt2,0,255,-5,205));
+
+
+
+
+
+				var lente0_zi  =  data.slice(534,536); 
+				var lente0_luna =  data.slice(536,538); 
+				var lente0_an =  data.slice(538,540); 
+
+				$('#lente0_data').text(lente0_zi + lente0_luna + lente0_an);
+				var p_cat =  data.slice(542,544) + data.slice(540,542);
+				$('#p_cat').text(percentValue(p_cat, 0,32767,0,49150).toFixed(1));
+				var p_sa =  data.slice(546,548) + data.slice(544,546);
+				$('#p_sa').text(percentValue(p_sa, 0,32767,0,1518).toFixed(1));
+				var temp_trafo1 = parseInt(data.slice(548,550),16);
+				$('#temp_trafo1').text(percentValue(temp_trafo1, 26,134,-50,100).toFixed(1));
+
+				break;
+
+			case "01":
+				var s2_def_drv1 = "0x" + data.slice(550,552).toUpperCase();
+	    		$('#s2_def_drv1').text(s2_def_drv1);
+	    		var s2_stare_drv1 = "0x" + data.slice(552,554).toUpperCase();
+	    		$('#s2_stare_drv1').text(s2_stare_drv1);
+	    		var s2_temp_l1 =   parseInt(data.slice(554,556), 16);
+				$('#s2_temp_l1').text(percentValue(s2_temp_l1, -55,125,-55,125).toFixed(1));
+				var s2_temp_h1 =   parseInt(data.slice(556,558), 16);
+				$('#s2_temp_h1').text(percentValue(s2_temp_h1, -55,125,-55,125).toFixed(1));
+				
+				var s2_def_drv2 = "0x" + data.slice(558,560).toUpperCase();
+	    		$('#s2_def_drv2').text(s2_def_drv2);
+	    		var s2_stare_drv2 = "0x" + data.slice(560,562).toUpperCase();
+	    		$('#s2_stare_drv2').text(s2_stare_drv2);
+	    		var s2_temp_l2 =   parseInt(data.slice(562,564), 16);
+				$('#s2_temp_l2').text(percentValue(s2_temp_l2, -55,125,-55,125).toFixed(1));
+				var s2_temp_h2 =   parseInt(data.slice(564,566), 16);
+				$('#s2_temp_h2').text(percentValue(s2_temp_h2, -55,125,-55,125).toFixed(1));
+
+				var s2_def_drv3 = "0x" + data.slice(566,568).toUpperCase();
+	    		$('#s2_def_drv3').text(s2_def_drv3);
+	    		var s2_stare_drv3 = "0x" + data.slice(568,570).toUpperCase();
+	    		$('#s2_stare_drv3').text(s2_stare_drv3);
+	    		var s2_temp_l3 =   parseInt(data.slice(570,572), 16);
+				$('#s2_temp_l3').text(percentValue(s2_temp_l3, -55,125,-55,125).toFixed(1));
+				var s2_temp_h3 =   parseInt(data.slice(572,574), 16);
+				$('#s2_temp_h3').text(percentValue(s2_temp_h3, -55,125,-55,125).toFixed(1));
+
+				var s2_def_drv4 = "0x" + data.slice(574,576).toUpperCase();
+	    		$('#s2_def_drv4').text(s2_def_drv4);
+	    		var s2_stare_drv4 = "0x" + data.slice(576,578).toUpperCase();
+	    		$('#s2_stare_drv4').text(s2_stare_drv4);
+	    		var s2_temp_l4 =   parseInt(data.slice(578,580), 16);
+				$('#s2_temp_l4').text(percentValue(s2_temp_l4, -55,125,-55,125).toFixed(1));
+				var s2_temp_h4 =   parseInt(data.slice(580,582), 16);
+				$('#s2_temp_h4').text(percentValue(s2_temp_h4, -55,125,-55,125).toFixed(1));
+
+				var s2_def_drv5 = "0x" + data.slice(582,584).toUpperCase();
+	    		$('#s2_def_drv5').text(s2_def_drv5);
+	    		var s2_stare_drv5 = "0x" + data.slice(584,586).toUpperCase();
+	    		$('#s2_stare_drv5').text(s2_stare_drv5);
+	    		var s2_temp_l5 =   parseInt(data.slice(586,588), 16);
+				$('#s2_temp_l5').text(percentValue(s2_temp_l5, -55,125,-55,125).toFixed(1));
+				var s2_temp_h5 =   parseInt(data.slice(588,590), 16);
+				$('#s2_temp_h5').text(percentValue(s2_temp_h5, -55,125,-55,125).toFixed(1));
+
+				var s2_def_drv6 = "0x" + data.slice(590,592).toUpperCase();
+	    		$('#s2_def_drv6').text(s2_def_drv6);
+	    		var s2_stare_drv6 = "0x" + data.slice(592,594).toUpperCase();
+	    		$('#s2_stare_drv6').text(s2_stare_drv6);
+	    		var s2_temp_l6 =   parseInt(data.slice(594,596), 16);
+				$('#s2_temp_l6').text(percentValue(s2_temp_l6, -55,125,-55,125).toFixed(1));
+				var s2_temp_h6 =   parseInt(data.slice(596,598), 16);
+				$('#s2_temp_h6').text(percentValue(s2_temp_h6, -55,125,-55,125).toFixed(1));
+
+				var s2_u_drv =  "0x" + data.slice(598,600).toUpperCase();
+				$('#s2_u_drv').text(s2_u_drv);
+				var s2_dsp_drv =  "0x" + data.slice(600,602).toUpperCase();
+				$('#s2_dsp_drv').text(s2_dsp_drv);
+				var s2_trip_14 =  "0x" + data.slice(602,604).toUpperCase();
+				$('#s2_trip_14').text(s2_trip_14);
+				var s2_trip_56 =  "0x" + data.slice(604,606).toUpperCase();
+				$('#s2_trip_56').text(s2_trip_56);
+				var s2_stare_mm =  "0x" + data.slice(606,608).toUpperCase();
+				$('#s2_stare_mm').text(s2_stare_mm);
+				var s2_inp_63 =  "0x" + data.slice(608,610).toUpperCase();
+				$('#s2_inp_63').text(s2_inp_63);
+				var s2_defect_can_drv =  "0x" + data.slice(610,612).toUpperCase();
+				$('#s2_defect_can_drv').text(s2_defect_can_drv);
+				var s2_stare_abs =  "0x" + data.slice(612,614).toUpperCase();
+				$('#s2_stare_abs').text(s2_stare_abs);
+
+
+
+
+
+				$('#mansa1_numerice').text("0x" + data.slice(534,536).toUpperCase());
+				$('#mansa1_forta').text("0x" + data.slice(536,538).toUpperCase());
+				$('#mansa1_viteza').text(percentValue(data.slice(538,540), 0,255,0,255).toFixed(1)) ;
+				$('#mansa2_numerice').text("0x" + data.slice(540,542).toUpperCase());
+				$('#mansa2_numerice').text("0x" + data.slice(542,544).toUpperCase());
+				$('#mansa2_viteza').text(percentValue(data.slice(544,546), 0,255,0,255).toFixed(1)) ;
+
+				break;
+
+			case "02":
+
+				var s3_def_drv1 = "0x" + data.slice(550,552).toUpperCase();
+	    		$('#s3_def_drv1').text(s3_def_drv1);
+	    		var s3_stare_drv1 = "0x" + data.slice(552,554).toUpperCase();
+	    		$('#s3_stare_drv1').text(s3_stare_drv1);
+	    		var s3_temp_l1 =   parseInt(data.slice(554,556), 16);
+				$('#s3_temp_l1').text(percentValue(s3_temp_l1, -55,125,-55,125).toFixed(1));
+				var s3_temp_h1 =   parseInt(data.slice(556,558), 16);
+				$('#s3_temp_h1').text(percentValue(s3_temp_h1, -55,125,-55,125).toFixed(1));
+				
+				var s3_def_drv2 = "0x" + data.slice(558,560).toUpperCase();
+	    		$('#s3_def_drv2').text(s3_def_drv2);
+	    		var s3_stare_drv2 = "0x" + data.slice(560,562).toUpperCase();
+	    		$('#s3_stare_drv2').text(s3_stare_drv2);
+	    		var s3_temp_l2 =   parseInt(data.slice(562,564), 16);
+				$('#s3_temp_l2').text(percentValue(s3_temp_l2, -55,125,-55,125).toFixed(1));
+				var s3_temp_h2 =   parseInt(data.slice(564,566), 16);
+				$('#s3_temp_h2').text(percentValue(s3_temp_h2, -55,125,-55,125).toFixed(1));
+
+				var s3_def_drv3 = "0x" + data.slice(566,568).toUpperCase();
+	    		$('#s3_def_drv3').text(s3_def_drv3);
+	    		var s3_stare_drv3 = "0x" + data.slice(568,570).toUpperCase();
+	    		$('#s3_stare_drv3').text(s3_stare_drv3);
+	    		var s3_temp_l3 =   parseInt(data.slice(570,572), 16);
+				$('#s3_temp_l3').text(percentValue(s3_temp_l3, -55,125,-55,125).toFixed(1));
+				var s3_temp_h3 =   parseInt(data.slice(572,574), 16);
+				$('#s3_temp_h3').text(percentValue(s3_temp_h3, -55,125,-55,125).toFixed(1));
+
+				var s3_def_drv4 = "0x" + data.slice(574,576).toUpperCase();
+	    		$('#s3_def_drv4').text(s3_def_drv4);
+	    		var s3_stare_drv4 = "0x" + data.slice(576,578).toUpperCase();
+	    		$('#s3_stare_drv4').text(s3_stare_drv4);
+	    		var s3_temp_l4 =   parseInt(data.slice(578,580), 16);
+				$('#s3_temp_l4').text(percentValue(s3_temp_l4, -55,125,-55,125).toFixed(1));
+				var s3_temp_h4 =   parseInt(data.slice(580,582), 16);
+				$('#s3_temp_h4').text(percentValue(s3_temp_h4, -55,125,-55,125).toFixed(1));
+
+				var s3_def_drv5 = "0x" + data.slice(582,584).toUpperCase();
+	    		$('#s3_def_drv5').text(s3_def_drv5);
+	    		var s3_stare_drv5 = "0x" + data.slice(584,586).toUpperCase();
+	    		$('#s3_stare_drv5').text(s3_stare_drv5);
+	    		var s3_temp_l5 =   parseInt(data.slice(586,588), 16);
+				$('#s3_temp_l5').text(percentValue(s3_temp_l5, -55,125,-55,125).toFixed(1));
+				var s3_temp_h5 =   parseInt(data.slice(588,590), 16);
+				$('#s3_temp_h5').text(percentValue(s3_temp_h5, -55,125,-55,125).toFixed(1));
+
+				var s3_def_drv6 = "0x" + data.slice(590,592).toUpperCase();
+	    		$('#s3_def_drv6').text(s3_def_drv6);
+	    		var s3_stare_drv6 = "0x" + data.slice(592,594).toUpperCase();
+	    		$('#s3_stare_drv6').text(s3_stare_drv6);
+	    		var s3_temp_l6 =   parseInt(data.slice(594,596), 16);
+				$('#s3_temp_l6').text(percentValue(s3_temp_l6, -55,125,-55,125).toFixed(1));
+				var s3_temp_h6 =   parseInt(data.slice(596,598), 16);
+				$('#s3_temp_h6').text(percentValue(s3_temp_h6, -55,125,-55,125).toFixed(1));
+
+				var s3_u_drv =  "0x" + data.slice(598,600).toUpperCase();
+				$('#s3_u_drv').text(s3_u_drv);
+				var s3_dsp_drv =  "0x" + data.slice(600,602).toUpperCase();
+				$('#s3_dsp_drv').text(s3_dsp_drv);
+				var s3_trip_14 =  "0x" + data.slice(602,604).toUpperCase();
+				$('#s3_trip_14').text(s3_trip_14);
+				var s3_trip_56 =  "0x" + data.slice(604,606).toUpperCase();
+				$('#s3_trip_56').text(s3_trip_56);
+				var s3_stare_mm =  "0x" + data.slice(606,608).toUpperCase();
+				$('#s3_stare_mm').text(s3_stare_mm);
+				var s3_inp_63 =  "0x" + data.slice(608,610).toUpperCase();
+				$('#s3_inp_63').text(s3_inp_63);
+				var s3_defect_can_drv =  "0x" + data.slice(610,612).toUpperCase();
+				$('#s3_defect_can_drv').text(s3_defect_can_drv);
+				var s3_stare_abs =  "0x" + data.slice(612,614).toUpperCase();
+				$('#s3_stare_abs').text(s3_stare_abs);
+				
+				var defect0 = "0x" + data.slice(534,536).toUpperCase();
+				$('#defect0').text(defect0);
+				var defect1 = "0x" + data.slice(536,538).toUpperCase();
+				$('#defect1').text(defect1);
+				var defect2 = "0x" + data.slice(538,540).toUpperCase();
+				$('#defect2').text(defect2);
+				var defect3 = "0x" + data.slice(540,542).toUpperCase();
+				$('#defect3').text(defect3);
+				var defect4 = "0x" + data.slice(542,544).toUpperCase();
+				$('#defect4').text(defect4);
+				var defect5 = "0x" + data.slice(544,546).toUpperCase();
+				$('#defect5').text(defect5);
+				var defect6 = "0x" + data.slice(546,548).toUpperCase();
+				$('#defect6').text(defect6);
+				var defect7 = "0x" + data.slice(548,550).toUpperCase();
+				$('#defect7').text(defect7);
+
+				break;
+
+			case "03":
+
+				var s4_def_drv1 = "0x" + data.slice(550,552).toUpperCase();
+	    		$('#s4_def_drv1').text(s4_def_drv1);
+	    		var s4_stare_drv1 = "0x" + data.slice(552,554).toUpperCase();
+	    		$('#s4_stare_drv1').text(s4_stare_drv1);
+	    		var s4_temp_l1 =   parseInt(data.slice(554,556), 16);
+				$('#s4_temp_l1').text(percentValue(s4_temp_l1, -55,125,-55,125).toFixed(1));
+				var s4_temp_h1 =   parseInt(data.slice(556,558), 16);
+				$('#s4_temp_h1').text(percentValue(s4_temp_h1, -55,125,-55,125).toFixed(1));
+				
+				var s4_def_drv2 = "0x" + data.slice(558,560).toUpperCase();
+	    		$('#s4_def_drv2').text(s4_def_drv2);
+	    		var s4_stare_drv2 = "0x" + data.slice(560,562).toUpperCase();
+	    		$('#s4_stare_drv2').text(s4_stare_drv2);
+	    		var s4_temp_l2 =   parseInt(data.slice(562,564), 16);
+				$('#s4_temp_l2').text(percentValue(s4_temp_l2, -55,125,-55,125).toFixed(1));
+				var s4_temp_h2 =   parseInt(data.slice(564,566), 16);
+				$('#s4_temp_h2').text(percentValue(s4_temp_h2, -55,125,-55,125).toFixed(1));
+
+				var s4_def_drv3 = "0x" + data.slice(566,568).toUpperCase();
+	    		$('#s4_def_drv3').text(s4_def_drv3);
+	    		var s4_stare_drv3 = "0x" + data.slice(568,570).toUpperCase();
+	    		$('#s4_stare_drv3').text(s4_stare_drv3);
+	    		var s4_temp_l3 =   parseInt(data.slice(570,572), 16);
+				$('#s4_temp_l3').text(percentValue(s4_temp_l3, -55,125,-55,125).toFixed(1));
+				var s4_temp_h3 =   parseInt(data.slice(572,574), 16);
+				$('#s4_temp_h3').text(percentValue(s4_temp_h3, -55,125,-55,125).toFixed(1));
+
+				var s4_def_drv4 = "0x" + data.slice(574,576).toUpperCase();
+	    		$('#s4_def_drv4').text(s4_def_drv4);
+	    		var s4_stare_drv4 = "0x" + data.slice(576,578).toUpperCase();
+	    		$('#s4_stare_drv4').text(s4_stare_drv4);
+	    		var s4_temp_l4 =   parseInt(data.slice(578,580), 16);
+				$('#s4_temp_l4').text(percentValue(s4_temp_l4, -55,125,-55,125).toFixed(1));
+				var s4_temp_h4 =   parseInt(data.slice(580,582), 16);
+				$('#s4_temp_h4').text(percentValue(s4_temp_h4, -55,125,-55,125).toFixed(1));
+
+				var s4_def_drv5 = "0x" + data.slice(582,584).toUpperCase();
+	    		$('#s4_def_drv5').text(s4_def_drv5);
+	    		var s4_stare_drv5 = "0x" + data.slice(584,586).toUpperCase();
+	    		$('#s4_stare_drv5').text(s4_stare_drv5);
+	    		var s4_temp_l5 =   parseInt(data.slice(586,588), 16);
+				$('#s4_temp_l5').text(percentValue(s4_temp_l5, -55,125,-55,125).toFixed(1));
+				var s4_temp_h5 =   parseInt(data.slice(588,590), 16);
+				$('#s4_temp_h5').text(percentValue(s4_temp_h5, -55,125,-55,125).toFixed(1));
+
+				var s4_def_drv6 = "0x" + data.slice(590,592).toUpperCase();
+	    		$('#s4_def_drv6').text(s4_def_drv6);
+	    		var s4_stare_drv6 = "0x" + data.slice(592,594).toUpperCase();
+	    		$('#s4_stare_drv6').text(s4_stare_drv6);
+	    		var s4_temp_l6 =   parseInt(data.slice(594,596), 16);
+				$('#s4_temp_l6').text(percentValue(s4_temp_l6, -55,125,-55,125).toFixed(1));
+				var s4_temp_h6 =   parseInt(data.slice(596,598), 16);
+				$('#s4_temp_h6').text(percentValue(s4_temp_h6, -55,125,-55,125).toFixed(1));
+
+				var s4_u_drv =  "0x" + data.slice(598,600).toUpperCase();
+				$('#s4_u_drv').text(s4_u_drv);
+				var s4_dsp_drv =  "0x" + data.slice(600,602).toUpperCase();
+				$('#s4_dsp_drv').text(s4_dsp_drv);
+				var s4_trip_14 =  "0x" + data.slice(602,604).toUpperCase();
+				$('#s4_trip_14').text(s4_trip_14);
+				var s4_trip_56 =  "0x" + data.slice(604,606).toUpperCase();
+				$('#s4_trip_56').text(s4_trip_56);
+				var s4_stare_mm =  "0x" + data.slice(606,608).toUpperCase();
+				$('#s4_stare_mm').text(s4_stare_mm);
+				var s4_inp_63 =  "0x" + data.slice(608,610).toUpperCase();
+				$('#s4_inp_63').text(s4_inp_63);
+				var s4_defect_can_drv =  "0x" + data.slice(610,612).toUpperCase();
+				$('#s4_defect_can_drv').text(s4_defect_can_drv);
+				var s4_stare_abs =  "0x" + data.slice(612,614).toUpperCase();
+				$('#s4_stare_abs').text(s4_stare_abs);
+
+				var defect8 = "0x" + data.slice(534,536).toUpperCase();
+				$('#defect8').text(defect8);
+				var defect9 = "0x" + data.slice(536,538).toUpperCase();
+				$('#defect9').text(defect9);
+				var defect10 = "0x" + data.slice(538,540).toUpperCase();
+				$('#defect10').text(defect10);
+				var defect11 = "0x" + data.slice(540,542).toUpperCase();
+				$('#defect11').text(defect11);
+				var defect12 = "0x" + data.slice(542,544).toUpperCase();
+				$('#defect12').text(defect12);
+				var defect13 = "0x" + data.slice(544,546).toUpperCase();
+				$('#defect13').text(defect13);
+				var defect14 = "0x" + data.slice(546,548).toUpperCase();
+				$('#defect14').text(defect14);
+				var defect15 = "0x" + data.slice(548,550).toUpperCase();
+				$('#defect15').text(defect15);
+
+				break;
+
+			case "04":
+
+				var s5_def_drv1 = "0x" + data.slice(550,552).toUpperCase();
+	    		$('#s5_def_drv1').text(s5_def_drv1);
+	    		var s5_stare_drv1 = "0x" + data.slice(552,554).toUpperCase();
+	    		$('#s5_stare_drv1').text(s5_stare_drv1);
+	    		var s5_temp_l1 =   parseInt(data.slice(554,556), 16);
+				$('#s5_temp_l1').text(percentValue(s5_temp_l1, -55,125,-55,125).toFixed(1));
+				var s5_temp_h1 =   parseInt(data.slice(556,558), 16);
+				$('#s5_temp_h1').text(percentValue(s5_temp_h1, -55,125,-55,125).toFixed(1));
+				
+				var s5_def_drv2 = "0x" + data.slice(558,560).toUpperCase();
+	    		$('#s5_def_drv2').text(s5_def_drv2);
+	    		var s5_stare_drv2 = "0x" + data.slice(560,562).toUpperCase();
+	    		$('#s5_stare_drv2').text(s5_stare_drv2);
+	    		var s5_temp_l2 =   parseInt(data.slice(562,564), 16);
+				$('#s5_temp_l2').text(percentValue(s5_temp_l2, -55,125,-55,125).toFixed(1));
+				var s5_temp_h2 =   parseInt(data.slice(564,566), 16);
+				$('#s5_temp_h2').text(percentValue(s5_temp_h2, -55,125,-55,125).toFixed(1));
+
+				var s5_def_drv3 = "0x" + data.slice(566,568).toUpperCase();
+	    		$('#s5_def_drv3').text(s5_def_drv3);
+	    		var s5_stare_drv3 = "0x" + data.slice(568,570).toUpperCase();
+	    		$('#s5_stare_drv3').text(s5_stare_drv3);
+	    		var s5_temp_l3 =   parseInt(data.slice(570,572), 16);
+				$('#s5_temp_l3').text(percentValue(s5_temp_l3, -55,125,-55,125).toFixed(1));
+				var s5_temp_h3 =   parseInt(data.slice(572,574), 16);
+				$('#s5_temp_h3').text(percentValue(s5_temp_h3, -55,125,-55,125).toFixed(1));
+
+				var s5_def_drv4 = "0x" + data.slice(574,576).toUpperCase();
+	    		$('#s5_def_drv4').text(s5_def_drv4);
+	    		var s5_stare_drv4 = "0x" + data.slice(576,578).toUpperCase();
+	    		$('#s5_stare_drv4').text(s5_stare_drv4);
+	    		var s5_temp_l4 =   parseInt(data.slice(578,580), 16);
+				$('#s5_temp_l4').text(percentValue(s5_temp_l4, -55,125,-55,125).toFixed(1));
+				var s5_temp_h4 =   parseInt(data.slice(580,582), 16);
+				$('#s5_temp_h4').text(percentValue(s5_temp_h4, -55,125,-55,125).toFixed(1));
+
+				var s5_def_drv5 = "0x" + data.slice(582,584).toUpperCase();
+	    		$('#s5_def_drv5').text(s5_def_drv5);
+	    		var s5_stare_drv5 = "0x" + data.slice(584,586).toUpperCase();
+	    		$('#s5_stare_drv5').text(s5_stare_drv5);
+	    		var s5_temp_l5 =   parseInt(data.slice(586,588), 16);
+				$('#s5_temp_l5').text(percentValue(s5_temp_l5, -55,125,-55,125).toFixed(1));
+				var s5_temp_h5 =   parseInt(data.slice(588,590), 16);
+				$('#s5_temp_h5').text(percentValue(s5_temp_h5, -55,125,-55,125).toFixed(1));
+
+				var s5_def_drv6 = "0x" + data.slice(590,592).toUpperCase();
+	    		$('#s5_def_drv6').text(s5_def_drv6);
+	    		var s5_stare_drv6 = "0x" + data.slice(592,594).toUpperCase();
+	    		$('#s5_stare_drv6').text(s5_stare_drv6);
+	    		var s5_temp_l6 =   parseInt(data.slice(594,596), 16);
+				$('#s5_temp_l6').text(percentValue(s5_temp_l6, -55,125,-55,125).toFixed(1));
+				var s5_temp_h6 =   parseInt(data.slice(596,598), 16);
+				$('#s5_temp_h6').text(percentValue(s5_temp_h6, -55,125,-55,125).toFixed(1));
+
+				var s5_u_drv =  "0x" + data.slice(598,600).toUpperCase();
+				$('#s5_u_drv').text(s5_u_drv);
+				var s5_dsp_drv =  "0x" + data.slice(600,602).toUpperCase();
+				$('#s5_dsp_drv').text(s5_dsp_drv);
+				var s5_trip_14 =  "0x" + data.slice(602,604).toUpperCase();
+				$('#s5_trip_14').text(s5_trip_14);
+				var s5_trip_56 =  "0x" + data.slice(604,606).toUpperCase();
+				$('#s5_trip_56').text(s5_trip_56);
+				var s5_stare_mm =  "0x" + data.slice(606,608).toUpperCase();
+				$('#s5_stare_mm').text(s5_stare_mm);
+				var s5_inp_63 =  "0x" + data.slice(608,610).toUpperCase();
+				$('#s5_inp_63').text(s5_inp_63);
+				var s5_defect_can_drv =  "0x" + data.slice(610,612).toUpperCase();
+				$('#s5_defect_can_drv').text(s5_defect_can_drv);
+				var s5_stare_abs =  "0x" + data.slice(612,614).toUpperCase();
+				$('#s5_stare_abs').text(s5_stare_abs);
+
+				var defect16 = "0x" + data.slice(534,536).toUpperCase();
+				$('#defect16').text(defect16);
+				var defect17 = "0x" + data.slice(536,538).toUpperCase();
+				$('#defect17').text(defect17);
+				var defect18 = "0x" + data.slice(538,540).toUpperCase();
+				$('#defect18').text(defect18);
+				var defect19 = "0x" + data.slice(540,542).toUpperCase();
+				$('#defect19').text(defect19);
+				var defect20 = "0x" + data.slice(542,544).toUpperCase();
+				$('#defect20').text(defect20);
+				var defect21 = "0x" + data.slice(544,546).toUpperCase();
+				$('#defect21').text(defect21);
+				var defect22 = "0x" + data.slice(546,548).toUpperCase();
+				$('#defect22').text(defect22);
+				var defect23 = "0x" + data.slice(548,550).toUpperCase();
+				$('#defect23').text(defect23);
+
+				break;
+
+			case "05":
+
+				var s6_def_drv1 = "0x" + data.slice(550,552).toUpperCase();
+	    		$('#s6_def_drv1').text(s6_def_drv1);
+	    		var s6_stare_drv1 = "0x" + data.slice(552,554).toUpperCase();
+	    		$('#s6_stare_drv1').text(s6_stare_drv1);
+	    		var s6_temp_l1 =   parseInt(data.slice(554,556), 16);
+				$('#s6_temp_l1').text(percentValue(s6_temp_l1, -55,125,-55,125).toFixed(1));
+				var s6_temp_h1 =   parseInt(data.slice(556,558), 16);
+				$('#s6_temp_h1').text(percentValue(s6_temp_h1, -55,125,-55,125).toFixed(1));
+				
+				var s6_def_drv2 = "0x" + data.slice(558,560).toUpperCase();
+	    		$('#s6_def_drv2').text(s6_def_drv2);
+	    		var s6_stare_drv2 = "0x" + data.slice(560,562).toUpperCase();
+	    		$('#s6_stare_drv2').text(s6_stare_drv2);
+	    		var s6_temp_l2 =   parseInt(data.slice(562,564), 16);
+				$('#s6_temp_l2').text(percentValue(s6_temp_l2, -55,125,-55,125).toFixed(1));
+				var s6_temp_h2 =   parseInt(data.slice(564,566), 16);
+				$('#s6_temp_h2').text(percentValue(s6_temp_h2, -55,125,-55,125).toFixed(1));
+
+				var s6_def_drv3 = "0x" + data.slice(566,568).toUpperCase();
+	    		$('#s6_def_drv3').text(s6_def_drv3);
+	    		var s6_stare_drv3 = "0x" + data.slice(568,570).toUpperCase();
+	    		$('#s6_stare_drv3').text(s6_stare_drv3);
+	    		var s6_temp_l3 =   parseInt(data.slice(570,572), 16);
+				$('#s6_temp_l3').text(percentValue(s6_temp_l3, -55,125,-55,125).toFixed(1));
+				var s6_temp_h3 =   parseInt(data.slice(572,574), 16);
+				$('#s6_temp_h3').text(percentValue(s6_temp_h3, -55,125,-55,125).toFixed(1));
+
+				var s6_def_drv4 = "0x" + data.slice(574,576).toUpperCase();
+	    		$('#s6_def_drv4').text(s6_def_drv4);
+	    		var s6_stare_drv4 = "0x" + data.slice(576,578).toUpperCase();
+	    		$('#s6_stare_drv4').text(s6_stare_drv4);
+	    		var s6_temp_l4 =   parseInt(data.slice(578,580), 16);
+				$('#s6_temp_l4').text(percentValue(s6_temp_l4, -55,125,-55,125).toFixed(1));
+				var s6_temp_h4 =   parseInt(data.slice(580,582), 16);
+				$('#s6_temp_h4').text(percentValue(s6_temp_h4, -55,125,-55,125).toFixed(1));
+
+				var s6_def_drv5 = "0x" + data.slice(582,584).toUpperCase();
+	    		$('#s6_def_drv5').text(s6_def_drv5);
+	    		var s6_stare_drv5 = "0x" + data.slice(584,586).toUpperCase();
+	    		$('#s6_stare_drv5').text(s6_stare_drv5);
+	    		var s6_temp_l5 =   parseInt(data.slice(586,588), 16);
+				$('#s6_temp_l5').text(percentValue(s6_temp_l5, -55,125,-55,125).toFixed(1));
+				var s6_temp_h5 =   parseInt(data.slice(588,590), 16);
+				$('#s6_temp_h5').text(percentValue(s6_temp_h5, -55,125,-55,125).toFixed(1));
+
+				var s6_def_drv6 = "0x" + data.slice(590,592).toUpperCase();
+	    		$('#s6_def_drv6').text(s6_def_drv6);
+	    		var s6_stare_drv6 = "0x" + data.slice(592,594).toUpperCase();
+	    		$('#s6_stare_drv6').text(s6_stare_drv6);
+	    		var s6_temp_l6 =   parseInt(data.slice(594,596), 16);
+				$('#s6_temp_l6').text(percentValue(s6_temp_l6, -55,125,-55,125).toFixed(1));
+				var s6_temp_h6 =   parseInt(data.slice(596,598), 16);
+				$('#s6_temp_h6').text(percentValue(s6_temp_h6, -55,125,-55,125).toFixed(1));
+
+				var s6_u_drv =  "0x" + data.slice(598,600).toUpperCase();
+				$('#s6_u_drv').text(s6_u_drv);
+				var s6_dsp_drv =  "0x" + data.slice(600,602).toUpperCase();
+				$('#s6_dsp_drv').text(s6_dsp_drv);
+				var s6_trip_14 =  "0x" + data.slice(602,604).toUpperCase();
+				$('#s6_trip_14').text(s6_trip_14);
+				var s6_trip_56 =  "0x" + data.slice(604,606).toUpperCase();
+				$('#s6_trip_56').text(s6_trip_56);
+				var s6_stare_mm =  "0x" + data.slice(606,608).toUpperCase();
+				$('#s6_stare_mm').text(s6_stare_mm);
+				var s6_inp_63 =  "0x" + data.slice(608,610).toUpperCase();
+				$('#s6_inp_63').text(s6_inp_63);
+				var s6_defect_can_drv =  "0x" + data.slice(610,612).toUpperCase();
+				$('#s6_defect_can_drv').text(s6_defect_can_drv);
+				var s6_stare_abs =  "0x" + data.slice(612,614).toUpperCase();
+				$('#s6_stare_abs').text(s6_stare_abs);
+
+				var defect16 = "0x" + data.slice(534,536).toUpperCase();
+				$('#defect16').text(defect16);
+				var defect17 = "0x" + data.slice(536,538).toUpperCase();
+				$('#defect17').text(defect17);
+				var defect18 = "0x" + data.slice(538,540).toUpperCase();
+				$('#defect18').text(defect18);
+				var defect19 = "0x" + data.slice(540,542).toUpperCase();
+				$('#defect19').text(defect19);
+				var defect20 = "0x" + data.slice(542,544).toUpperCase();
+				$('#defect20').text(defect20);
+				var defect21 = "0x" + data.slice(544,546).toUpperCase();
+				$('#defect21').text(defect21);
+				var defect22 = "0x" + data.slice(546,548).toUpperCase();
+				$('#defect22').text(defect22);
+				var defect23 = "0x" + data.slice(548,550).toUpperCase();
+				$('#defect23').text(defect23);
+
+				break;
+
+	    }
+		
+		var stare13  =  "0x" + data.slice(10,12).toUpperCase();
+		$('#stare13').text(stare13);
+		var stare45  =  "0x" + data.slice(12,14).toUpperCase();
+		$('#stare45').text(stare45);
+		var stare_compr  =  "0x" + data.slice(14,16).toUpperCase();
+		$('#stare_compr').text(stare_compr);
+		var stare_vent_frin  =  "0x" + data.slice(16,18).toUpperCase();
+		$('#stare_vent_frin').text(stare_vent_frin);
+		var ok13cs  =  "0x" + data.slice(18,20).toUpperCase();
+		$('#ok13cs').text(ok13cs);
+		var ok13k  =  "0x" + data.slice(20,22).toUpperCase();
+		$('#ok13k').text(ok13k);
+		var ok45  =  "0x" + data.slice(22,24).toUpperCase();
+		$('#ok45').text(ok45);
+		var def_cs15  =  "0x" + data.slice(24,26).toUpperCase();
+		$('#def_cs15').text(def_cs15);
+		var def_can_module  =  "0x" + data.slice(26,28).toUpperCase();
+		$('#def_can_module').text(def_can_module);
+
+		$('#temp_Amb_Sala').text(percentValue(parseInt(data.slice(28,30), 16), -128,127,128,127).toFixed(1));
+		$('#u_in_mediu').text(percentValue(parseInt(data.slice(30,32), 16), 0,255,0,555).toFixed(1));
+		$('#i_in_mediu').text(percentValue(parseInt(data.slice(32,34), 16), 0,255,0,555).toFixed(1));
+		$('#i_pm_mediu').text(percentValue(parseInt(data.slice(34,36), 16), 0,255,0,55.5).toFixed(1));
+
+		var aux_inp_nunm_0  =  "0x" + data.slice(36,38).toUpperCase();
+		$('#aux_inp_nunm_0').text(aux_inp_nunm_0);
+		var aux_inp_nunm_1  =  "0x" + data.slice(38,40).toUpperCase();
+		$('#aux_inp_nunm_1').text(aux_inp_nunm_1);
+		var aux_inp_nunm_2  =  "0x" + data.slice(40,42).toUpperCase();
+		$('#aux_inp_nunm_2').text(aux_inp_nunm_2);
+		var aux_inp_nunm_3  =  "0x" + data.slice(42,44).toUpperCase();
+		$('#aux_inp_nunm_3').text(aux_inp_nunm_3);
+		var aux_inp_nunm_4  =  "0x" + data.slice(44,46).toUpperCase();
+		$('#aux_inp_nunm_4').text(aux_inp_nunm_4);
+		var aux_inp_nunm_5  =  "0x" + data.slice(46,48).toUpperCase();
+		$('#aux_inp_nunm_5').text(aux_inp_nunm_5);
+		var aux_inp_nunm_6  =  "0x" + data.slice(48,50).toUpperCase();
+		$('#aux_inp_nunm_6').text(aux_inp_nunm_6);
+		var aux_inp_nunm_7  =  "0x" + data.slice(50,52).toUpperCase();
+		$('#aux_inp_nunm_7').text(aux_inp_nunm_7);
+		var aux_inp_nunm_8  =  "0x" + data.slice(52,54).toUpperCase();
+		$('#aux_inp_nunm_8').text(aux_inp_nunm_8);
+		var aux_inp_nunm_9  =  "0x" + data.slice(54,56).toUpperCase();
+		$('#aux_inp_nunm_9').text(aux_inp_nunm_9);
+
+		var aux_out_num_0  =  "0x" + data.slice(56,58).toUpperCase();
+		$('#aux_out_num_0').text(aux_out_num_0);
+		var aux_out_num_1  =  "0x" + data.slice(58,60).toUpperCase();
+		$('#aux_out_num_1').text(aux_out_num_1);
+		var aux_out_num_2  =  "0x" + data.slice(60,62).toUpperCase();
+		$('#aux_out_num_2').text(aux_out_num_2);
+		var aux_out_num_3  =  "0x" + data.slice(62,64).toUpperCase();
+		$('#aux_out_num_3').text(aux_out_num_3);
+		var aux_out_num_4  =  "0x" + data.slice(64,66).toUpperCase();
+		$('#aux_out_num_4').text(aux_out_num_4);
+		var aux_out_num_5  =  "0x" + data.slice(66,68).toUpperCase();
+		$('#aux_out_num_5').text(aux_out_num_5);
+
+		var identificator_mesaj_icsa = data.slice(6,8);
+		
+		switch(identificator_mesaj_icsa)
+		{
+			case 0:
+
+				var stare_cs1  =  "0x" + data.slice(68,70).toUpperCase();
+				$('#stare_cs1').text(stare_cs1);
+				var stare_termo_cs1  =  "0x" + data.slice(72,74).toUpperCase();
+				$('#stare_termo_cs1').text(stare_termo_cs1);
+				var inp_num8_cs1  =  "0x" + data.slice(76,78).toUpperCase();
+				$('#inp_num8_cs1').text(inp_num8_cs1);
+				var cda_pwm_cs1  =   data.slice(82,84) + data.slice(80,82);
+				$('#cda_pwm_cs1').text(percentValue(cda_pwm_cs1, 0,32767,0,50).toFixed(1));
+				var u_in_mediu_cs1  =   data.slice(86,88) + data.slice(84,86);
+				$('#u_in_mediu_cs1').text(percentValue(u_in_mediu_cs1, 0,32767,0,50).toFixed(1));
+				var i_in_mediu_cs1  =   data.slice(90,92) + data.slice(88,90);
+				$('#i_in_mediu_cs1').text(percentValue(i_in_mediu_cs1, 0,32767,0,50).toFixed(1));
+				var u_cc_mediu_cs1  =   data.slice(94,96) + data.slice(92,94);
+				$('#u_cc_mediu_cs1').text(percentValue(u_cc_mediu_cs1, 0,32767,0,50).toFixed(1));
+				var i_in_max_cs1  =   data.slice(98,100) + data.slice(96,98);
+				$('#i_in_max_cs1').text(percentValue(i_in_max_cs1, 0,32767,0,50).toFixed(1));
+				var i_out_max_cs1  =   data.slice(102,104) + data.slice(100,102);
+				$('#i_out_max_cs1').text(percentValue(i_out_max_cs1, 0,32767,0,50).toFixed(1));
+				
+				var temp_4qc_x_cs1  = parseInt(data.slice(104,106),16);
+				$('#temp_4qc_x_cs1').text(percentValue(temp_4qc_x_cs1, 0,255,-50,205).toFixed(1));
+				var temp_4qc_y_cs1  = parseInt(data.slice(106,108),16);
+				$('#temp_4qc_y_cs1').text(percentValue(temp_4qc_y_cs1, 0,255,-50,205).toFixed(1));
+				var temp_3ph_a_cs1  = parseInt(data.slice(108,110),16);
+				$('#temp_3ph_a_cs1').text(percentValue(temp_3ph_a_cs1, 0,255,-50,205).toFixed(1));
+				var temp_3ph_b_cs1  = parseInt(data.slice(110,112),16);
+				$('#temp_3ph_b_cs1').text(percentValue(temp_3ph_b_cs1, 0,255,-50,205).toFixed(1));
+				var temp_3ph_c_cs1  = parseInt(data.slice(112,114),16);
+				$('#temp_3ph_c_cs1').text(percentValue(temp_3ph_c_cs1, 0,255,-50,205).toFixed(1));
+				var temp_rad_cs1  = parseInt(data.slice(114,116),16);
+				$('#temp_rad_cs1').text(percentValue(temp_rad_cs1, 0,255,-50,205).toFixed(1));
+				var def_preinc_cs1 = "0x" + data.slice(116,118).toUpperCase();
+				$('#def_preinc_cs1').text(def_preinc_cs1);
+				var cauza_bloc_hard_cs1 = "0x" + data.slice(118,120).toUpperCase();
+				$('#cauza_bloc_hard_cs1').text(cauza_bloc_hard_cs1);
+				var bloc_hard_cs1 = "0x" + data.slice(120,122).toUpperCase();
+				$('#bloc_hard_cs1').text(bloc_hard_cs1);
+
+				break;
+
+			case 1:
+
+				var stare_cs2  =  "0x" + data.slice(68,70).toUpperCase();
+				$('#stare_cs2').text(stare_cs2);
+				var stare_termo_cs2  =  "0x" + data.slice(72,74).toUpperCase();
+				$('#stare_termo_cs2').text(stare_termo_cs2);
+				var inp_num8_cs2  =  "0x" + data.slice(76,78).toUpperCase();
+				$('#inp_num8_cs2').text(inp_num8_cs2);
+				var cda_pwm_cs2  =   data.slice(82,84) + data.slice(80,82);
+				$('#cda_pwm_cs2').text(percentValue(cda_pwm_cs2, 0,32767,0,50).toFixed(1));
+				var u_in_mediu_cs2  =   data.slice(86,88) + data.slice(84,86);
+				$('#u_in_mediu_cs2').text(percentValue(u_in_mediu_cs2, 0,32767,0,50).toFixed(1));
+				var i_in_mediu_cs2  =   data.slice(90,92) + data.slice(88,90);
+				$('#i_in_mediu_cs2').text(percentValue(i_in_mediu_cs2, 0,32767,0,50).toFixed(1));
+				var u_cc_mediu_cs2  =   data.slice(94,96) + data.slice(92,94);
+				$('#u_cc_mediu_cs2').text(percentValue(u_cc_mediu_cs2, 0,32767,0,50).toFixed(1));
+				var i_in_max_cs2  =   data.slice(98,100) + data.slice(96,98);
+				$('#i_in_max_cs2').text(percentValue(i_in_max_cs2, 0,32767,0,50).toFixed(1));
+				var i_out_max_cs2  =   data.slice(102,104) + data.slice(100,102);
+				$('#i_out_max_cs2').text(percentValue(i_out_max_cs2, 0,32767,0,50).toFixed(1));
+				
+				var temp_4qc_x_cs2  = parseInt(data.slice(104,106),16);
+				$('#temp_4qc_x_cs2').text(percentValue(temp_4qc_x_cs2, 0,255,-50,205).toFixed(1));
+				var temp_4qc_y_cs2  = parseInt(data.slice(106,108),16);
+				$('#temp_4qc_y_cs2').text(percentValue(temp_4qc_y_cs2, 0,255,-50,205).toFixed(1));
+				var temp_3ph_a_cs2  = parseInt(data.slice(108,110),16);
+				$('#temp_3ph_a_cs2').text(percentValue(temp_3ph_a_cs2, 0,255,-50,205).toFixed(1));
+				var temp_3ph_b_cs2  = parseInt(data.slice(110,112),16);
+				$('#temp_3ph_b_cs2').text(percentValue(temp_3ph_b_cs2, 0,255,-50,205).toFixed(1));
+				var temp_3ph_c_cs2  = parseInt(data.slice(112,114),16);
+				$('#temp_3ph_c_cs2').text(percentValue(temp_3ph_c_cs2, 0,255,-50,205).toFixed(1));
+				var temp_rad_cs2  = parseInt(data.slice(114,116),16);
+				$('#temp_rad_cs2').text(percentValue(temp_rad_cs2, 0,255,-50,205).toFixed(1));
+				var def_preinc_cs2 = "0x" + data.slice(116,118).toUpperCase();
+				$('#def_preinc_cs2').text(def_preinc_cs2);
+				var cauza_bloc_hard_cs2 = "0x" + data.slice(118,120).toUpperCase();
+				$('#cauza_bloc_hard_cs2').text(cauza_bloc_hard_cs2);
+				var bloc_hard_cs2 = "0x" + data.slice(120,122).toUpperCase();
+				$('#bloc_hard_cs2').text(bloc_hard_cs2);
+
+				break;
+
+			case 2:
+				var stare_cs3  =  "0x" + data.slice(68,70).toUpperCase();
+				$('#stare_cs3').text(stare_cs3);
+				var stare_termo_cs3  =  "0x" + data.slice(72,74).toUpperCase();
+				$('#stare_termo_cs3').text(stare_termo_cs3);
+				var inp_num8_cs3  =  "0x" + data.slice(76,78).toUpperCase();
+				$('#inp_num8_cs3').text(inp_num8_cs3);
+				var cda_pwm_cs3  =   data.slice(82,84) + data.slice(80,82);
+				$('#cda_pwm_cs3').text(percentValue(cda_pwm_cs3, 0,32767,0,50).toFixed(1));
+				var u_in_mediu_cs3  =   data.slice(86,88) + data.slice(84,86);
+				$('#u_in_mediu_cs3').text(percentValue(u_in_mediu_cs3, 0,32767,0,50).toFixed(1));
+				var i_in_mediu_cs3  =   data.slice(90,92) + data.slice(88,90);
+				$('#i_in_mediu_cs3').text(percentValue(i_in_mediu_cs3, 0,32767,0,50).toFixed(1));
+				var u_cc_mediu_cs3  =   data.slice(94,96) + data.slice(92,94);
+				$('#u_cc_mediu_cs3').text(percentValue(u_cc_mediu_cs3, 0,32767,0,50).toFixed(1));
+				var i_in_max_cs3  =   data.slice(98,100) + data.slice(96,98);
+				$('#i_in_max_cs3').text(percentValue(i_in_max_cs3, 0,32767,0,50).toFixed(1));
+				var i_out_max_cs3  =   data.slice(102,104) + data.slice(100,102);
+				$('#i_out_max_cs3').text(percentValue(i_out_max_cs3, 0,32767,0,50).toFixed(1));
+				
+				var temp_4qc_x_cs3  = parseInt(data.slice(104,106),16);
+				$('#temp_4qc_x_cs3').text(percentValue(temp_4qc_x_cs3, 0,255,-50,205).toFixed(1));
+				var temp_4qc_y_cs3  = parseInt(data.slice(106,108),16);
+				$('#temp_4qc_y_cs3').text(percentValue(temp_4qc_y_cs3, 0,255,-50,205).toFixed(1));
+				var temp_3ph_a_cs3  = parseInt(data.slice(108,110),16);
+				$('#temp_3ph_a_cs3').text(percentValue(temp_3ph_a_cs3, 0,255,-50,205).toFixed(1));
+				var temp_3ph_b_cs3  = parseInt(data.slice(110,112),16);
+				$('#temp_3ph_b_cs3').text(percentValue(temp_3ph_b_cs3, 0,255,-50,205).toFixed(1));
+				var temp_3ph_c_cs3  = parseInt(data.slice(112,114),16);
+				$('#temp_3ph_c_cs3').text(percentValue(temp_3ph_c_cs3, 0,255,-50,205).toFixed(1));
+				var temp_rad_cs3  = parseInt(data.slice(114,116),16);
+				$('#temp_rad_cs3').text(percentValue(temp_rad_cs3, 0,255,-50,205).toFixed(1));
+				var def_preinc_cs3 = "0x" + data.slice(116,118).toUpperCase();
+				$('#def_preinc_cs3').text(def_preinc_cs3);
+				var cauza_bloc_hard_cs3 = "0x" + data.slice(118,120).toUpperCase();
+				$('#cauza_bloc_hard_cs3').text(cauza_bloc_hard_cs3);
+				var bloc_hard_cs3 = "0x" + data.slice(120,122).toUpperCase();
+				$('#bloc_hard_cs3').text(bloc_hard_cs3);
+
+				break;
+
+			case 3:
+
+				var stare_cs4  =  "0x" + data.slice(68,70).toUpperCase();
+				$('#stare_cs4').text(stare_cs4);
+				var stare_termo_cs4  =  "0x" + data.slice(72,74).toUpperCase();
+				$('#stare_termo_cs4').text(stare_termo_cs4);
+				var inp_num8_cs4  =  "0x" + data.slice(76,78).toUpperCase();
+				$('#inp_num8_cs4').text(inp_num8_cs4);
+				var cda_pwm_cs4  =   data.slice(82,84) + data.slice(80,82);
+				$('#cda_pwm_cs4').text(percentValue(cda_pwm_cs4, 0,32767,0,50).toFixed(1));
+				var u_in_mediu_cs4  =   data.slice(86,88) + data.slice(84,86);
+				$('#u_in_mediu_cs4').text(percentValue(u_in_mediu_cs4, 0,32767,0,50).toFixed(1));
+				var i_in_mediu_cs4  =   data.slice(90,92) + data.slice(88,90);
+				$('#i_in_mediu_cs4').text(percentValue(i_in_mediu_cs4, 0,32767,0,50).toFixed(1));
+				var u_cc_mediu_cs4  =   data.slice(94,96) + data.slice(92,94);
+				$('#u_cc_mediu_cs4').text(percentValue(u_cc_mediu_cs4, 0,32767,0,50).toFixed(1));
+				var i_in_max_cs4  =   data.slice(98,100) + data.slice(96,98);
+				$('#i_in_max_cs4').text(percentValue(i_in_max_cs4, 0,32767,0,50).toFixed(1));
+				var i_out_max_cs4  =   data.slice(102,104) + data.slice(100,102);
+				$('#i_out_max_cs4').text(percentValue(i_out_max_cs4, 0,32767,0,50).toFixed(1));
+				
+				var temp_4qc_x_cs4  = parseInt(data.slice(104,106),16);
+				$('#temp_4qc_x_cs4').text(percentValue(temp_4qc_x_cs4, 0,255,-50,205).toFixed(1));
+				var temp_4qc_y_cs4  = parseInt(data.slice(106,108),16);
+				$('#temp_4qc_y_cs4').text(percentValue(temp_4qc_y_cs4, 0,255,-50,205).toFixed(1));
+				var temp_3ph_a_cs4  = parseInt(data.slice(108,110),16);
+				$('#temp_3ph_a_cs4').text(percentValue(temp_3ph_a_cs4, 0,255,-50,205).toFixed(1));
+				var temp_3ph_b_cs4  = parseInt(data.slice(110,112),16);
+				$('#temp_3ph_b_cs4').text(percentValue(temp_3ph_b_cs4, 0,255,-50,205).toFixed(1));
+				var temp_3ph_c_cs4  = parseInt(data.slice(112,114),16);
+				$('#temp_3ph_c_cs4').text(percentValue(temp_3ph_c_cs4, 0,255,-50,205).toFixed(1));
+				var temp_rad_cs4  = parseInt(data.slice(114,116),16);
+				$('#temp_rad_cs4').text(percentValue(temp_rad_cs4, 0,255,-50,205).toFixed(1));
+				var def_preinc_cs4 = "0x" + data.slice(116,118).toUpperCase();
+				$('#def_preinc_cs4').text(def_preinc_cs4);
+				var cauza_bloc_hard_cs4 = "0x" + data.slice(118,120).toUpperCase();
+				$('#cauza_bloc_hard_cs4').text(cauza_bloc_hard_cs4);
+				var bloc_hard_cs4 = "0x" + data.slice(120,122).toUpperCase();
+				$('#bloc_hard_cs4').text(bloc_hard_cs4);
+
+				break;
+
+			case 4:
+				
+				var stare_cs5  =  "0x" + data.slice(68,70).toUpperCase();
+				$('#stare_cs5').text(stare_cs5);
+				var stare_termo_cs5  =  "0x" + data.slice(72,74).toUpperCase();
+				$('#stare_termo_cs5').text(stare_termo_cs5);
+				var inp_num8_cs5  =  "0x" + data.slice(76,78).toUpperCase();
+				$('#inp_num8_cs5').text(inp_num8_cs5);
+				var cda_pwm_cs5  =   data.slice(82,84) + data.slice(80,82);
+				$('#cda_pwm_cs5').text(percentValue(cda_pwm_cs5, 0,32767,0,50).toFixed(1));
+				var u_in_mediu_cs5  =   data.slice(86,88) + data.slice(84,86);
+				$('#u_in_mediu_cs5').text(percentValue(u_in_mediu_cs5, 0,32767,0,50).toFixed(1));
+				var i_in_mediu_cs5  =   data.slice(90,92) + data.slice(88,90);
+				$('#i_in_mediu_cs5').text(percentValue(i_in_mediu_cs5, 0,32767,0,50).toFixed(1));
+				var u_cc_mediu_cs5  =   data.slice(94,96) + data.slice(92,94);
+				$('#u_cc_mediu_cs5').text(percentValue(u_cc_mediu_cs5, 0,32767,0,50).toFixed(1));
+				var i_in_max_cs5  =   data.slice(98,100) + data.slice(96,98);
+				$('#i_in_max_cs5').text(percentValue(i_in_max_cs5, 0,32767,0,50).toFixed(1));
+				var i_out_max_cs5  =   data.slice(102,104) + data.slice(100,102);
+				$('#i_out_max_cs5').text(percentValue(i_out_max_cs5, 0,32767,0,50).toFixed(1));
+				
+				var temp_4qc_x_cs5  = parseInt(data.slice(104,106),16);
+				$('#temp_4qc_x_cs5').text(percentValue(temp_4qc_x_cs5, 0,255,-50,205).toFixed(1));
+				var temp_4qc_y_cs5  = parseInt(data.slice(106,108),16);
+				$('#temp_4qc_y_cs5').text(percentValue(temp_4qc_y_cs5, 0,255,-50,205).toFixed(1));
+				var temp_3ph_a_cs5  = parseInt(data.slice(108,110),16);
+				$('#temp_3ph_a_cs5').text(percentValue(temp_3ph_a_cs5, 0,255,-50,205).toFixed(1));
+				var temp_3ph_b_cs5  = parseInt(data.slice(110,112),16);
+				$('#temp_3ph_b_cs5').text(percentValue(temp_3ph_b_cs5, 0,255,-50,205).toFixed(1));
+				var temp_3ph_c_cs5  = parseInt(data.slice(112,114),16);
+				$('#temp_3ph_c_cs5').text(percentValue(temp_3ph_c_cs5, 0,255,-50,205).toFixed(1));
+				var temp_rad_cs5  = parseInt(data.slice(114,116),16);
+				$('#temp_rad_cs5').text(percentValue(temp_rad_cs5, 0,255,-50,205).toFixed(1));
+				var def_preinc_cs5 = "0x" + data.slice(116,118).toUpperCase();
+				$('#def_preinc_cs5').text(def_preinc_cs5);
+				var cauza_bloc_hard_cs5 = "0x" + data.slice(118,120).toUpperCase();
+				$('#cauza_bloc_hard_cs5').text(cauza_bloc_hard_cs5);
+				var bloc_hard_cs5 = "0x" + data.slice(120,122).toUpperCase();
+				$('#bloc_hard_cs5').text(bloc_hard_cs5);
+
+				break;
+
+			case 6:
+				var stari_IBLE10 =  "0x" + data.slice(68,70).toUpperCase();
+				$('#stari_IBLE10').text(stari_IBLE10);
+				var stare_limitari_IBLE10 =  "0x" + data.slice(72,74).toUpperCase();
+				$('#stare_limitari_IBLE10').text(stare_limitari_IBLE10);
+				var cauza_bloc_soft_IBLE10 =  "0x" + data.slice(74,76).toUpperCase();
+				$('#cauza_bloc_soft_IBLE10').text(cauza_bloc_soft_IBLE10);
+				var cauza_bloc_hard_IBLE10 =  "0x" + data.slice(76,78).toUpperCase();
+				$('#cauza_bloc_hard_IBLE10').text(cauza_bloc_hard_IBLE10);
+				var bloc_hard_IBLE10 =  "0x" + data.slice(78,80).toUpperCase();
+				$('#bloc_hard_IBLE10').text(bloc_hard_IBLE10);
+				
+				var cda_pwm_ible10 =  data.slice(82,84) + data.slice(80,82);
+				$('#cda_pwm_ible10').text(percentValue(cda_pwm_ible10, 0,1000,0,100).toFixed(1));
+				
+				var u_in_med_ible10 =  data.slice(86,88) + data.slice(84,86);
+				$('#u_in_med_ible10').text(percentValue(u_in_med_ible10,0,511,0,1110).toFixed(1));
+				
+				var i_in_med_ible10 =  data.slice(90,92) + data.slice(88,90);
+				$('#i_in_med_ible10').text(percentValue(i_in_med_ible10,0,511,0,1110).toFixed(1));
+				
+				var u_cc_med_ible10 =  data.slice(94,96) + data.slice(92,94);
+				$('#u_cc_med_ible10').text(percentValue(u_cc_med_ible10,0,1023,0,1000).toFixed(1));
+				
+				var u_out_med_ible10 =  data.slice(98,100) + data.slice(96,98);
+				$('#u_out_med_ible10').text(percentValue(u_out_med_ible10,0,1023,0,200).toFixed(1));
+				
+				var u_out_spi_ible10 =  data.slice(102,104) + data.slice(100,102);
+				$('#u_out_spi_ible10').text(percentValue(u_out_spi_ible10,0,1023,0,200).toFixed(1));
+				
+				var i_out_med_ible10 =  data.slice(106,108) + data.slice(104,106);
+				$('#i_out_med_ible10').text(percentValue(i_out_med_ible10,0,1023,0,100).toFixed(1));
+				
+				var i_bat_med_ible10 =  data.slice(110,112) + data.slice(108,110);
+				$('#i_bat_med_ible10').text(percentValue(i_bat_med_ible10,0,1023,-50,50).toFixed(1));
+				
+				var temp_PFC_IBLE =  parseInt(data.slice(116,118),16);
+				$('#temp_PFC_IBLE').text(percentValue(temp_PFC_IBLE,0,255,-50,205).toFixed(1));
+				
+				var temp_PWM_IBLE =  parseInt(data.slice(118,120),16);
+				$('#temp_PWM_IBLE').text(percentValue(temp_PWM_IBLE,0,255,-50,205).toFixed(1));
+
+				var temp_Trafo_IBLE =  parseInt(data.slice(120,122),16);
+				$('#temp_Trafo_IBLE').text(percentValue(temp_Trafo_IBLE,0,255,-50,205).toFixed(1));
+				
+				var temp_RAD_IBLE =  parseInt(data.slice(122,124),16);
+				$('#temp_RAD_IBLE').text(percentValue(temp_RAD_IBLE,0,255,-50,205).toFixed(1));
+
+				var temp_BAT_IBLE =  parseInt(data.slice(124,126),16);
+				$('#temp_rad_IBLE').text(percentValue(temp_BAT_IBLE,0,255,-50,205).toFixed(1));
+
+
+
+
+		}
+
+		var ivms_secunde =  parseInt(data.slice(654,656),16);
+		var ivms_minute =  parseInt(data.slice(656,658),16);
+		var ivms_ora = parseInt(data.slice(558,660),16);
+		var timpul_ivms = ivms_ora + ':' + ivms_minute + ':' + ivms_secunde
+		$('#ivms_timp').text(timpul_ivms);
+		var ivms_ziua = parseInt(data.slice(660,662),16);
+		var ivms_luna = parseInt(data.slice(662,664),16);
+		var ivms_anul = 2000+ parseInt(data.slice(664,666),16);
+		var ivms_data = ivms_ziua + '-' + ivms_luna +'-' + ivms_anul;
+		$('#ivms_data').text(ivms_data);
+		var ivms_viteza = parseInt(data.slice(666,668),16);
+		$('#ivms_viteza').text(ivms_viteza);
+		var ivms_inp_bin_1 =  padDigits(convertBase(parseInt(data.slice(668,670),16),16,2),8);
+		$('#ivms_inp_bin_1').text(ivms_inp_bin_1);
+		var ivms_inp_bin_2 = padDigits(convertBase(parseInt(data.slice(670,672),16),16,2),8);
+		$('#ivms_inp_bin_2').text(ivms_inp_bin_2);
+		var ivms_cons_a = parseInt(data.slice(672,674),16).toString() +  '.' + parseInt(data.slice(674,676),16).toString();
+		$('#ivms_cons_a').text(ivms_cons_a);
+		var ivms_tren = data.slice(676,678).toString() +  data.slice(678,680).toString() +  data.slice(680,682).toString() ;
+		$('#ivms_tren').text(ivms_tren);
+		var ivms_tone = data.slice(682,684).toString() +  data.slice(684,686).toString() ;
+		$('#ivms_tone').text(ivms_tone);
+		var ivms_osii = data.slice(686,688).toString() + data.slice(688,690).toString() + data.slice(690,692).toString() + data.slice(692,694).toString()+ data.slice(694,696).toString()
+		$('#ivms_osii').text(ivms_osii);
+		var ivms_mecanic = data.slice(696,698).toString() + data.slice(698,700).toString()+ data.slice(700,702).toString() + data.slice(702,704).toString();
+		$('#ivms_mecanic').text(ivms_mecanic);
+		var ivms_nrLoco = data.slice(704,706).toString() + data.slice(706,708).toString()+ data.slice(708,710).toString() + data.slice(710,712).toString();
+		$('#ivms_nrLoco').text(ivms_nrLoco);
+		var ivms_diametru =  parseInt(data.slice(714,716).toString()+ data.slice(712,714).toString(),16);
+		$('#ivms_diametru').text(ivms_diametru);
+		var ivms_putere = parseInt(data.slice(716,718).toString()+ data.slice(718,720).toString(),16);
+		$('#ivms_putere').text(ivms_putere);
+
+
+		var gps_sec = data.slice(728,730).toString();
+		var gps_min = data.slice(730,732).toString();
+		var gps_ora = data.slice(732,734).toString();
+		var gps_timp = gps_ora + ':' + gps_min + ':' + gps_sec 
+		$('#gps_timp').text(gps_timp);
+
+		var gps_zi = data.slice(734,736).toString();
+		var gps_luna = data.slice(736,738).toString();
+		var gps_an = data.slice(738,740).toString();
+		var gps_data = gps_zi+ '-'+gps_luna + '-' + gps_an;
+		$('#gps_data').text(gps_data);
+
+
+		var gps_grade_lat = data.slice(740,742).toString();
+		var gps_min_lat = data.slice(742,744).toString();
+		var gps_sutimi_min_lat = data.slice(744,746).toString();
+		var gps_zecimi_miimi_min_lat = data.slice(746,748).toString();
+		var gps_lat = gps_grade_lat + '°' + gps_min_lat + '.' + gps_sutimi_min_lat + gps_zecimi_miimi_min_lat + '\'';
+		$('#gps_lat').text(gps_lat);
+
+
+		var gps_grade_long = data.slice(750,752).toString();
+		var gps_min_long = data.slice(752,754).toString();
+		var gps_sutimi_min_long = data.slice(754,756).toString();
+		var gps_zecimi_miimi_min_long = data.slice(756,758).toString();
+		var gps_long = gps_grade_long + '°' + gps_min_long + '.' + gps_sutimi_min_long + gps_zecimi_miimi_min_long + '\'';
+		$('#gps_long').text(gps_long);
+
+		var gps_sute_altitudine = data.slice(758,760).toString();
+		var gps_unit_altitudine = data.slice(760,762).toString();
+		var gps_altitudine = gps_sute_altitudine + gps_unit_altitudine;
+		$('#gps_altitudine').text(gps_altitudine);
+
+		var gps_zeci_curs = data.slice(762,764).toString();
+		var gps_zecimi_curs = data.slice(764,766).toString();
+		$('#gps_curs').text(gps_zecimi_curs+gps_zecimi_curs);
+
+		var gps_zeci_viteza = data.slice(766,768).toString();
+		var gps_zecimi_viteza = data.slice(768,770).toString();
+		var gps_viteza = gps_zeci_viteza + gps_zecimi_viteza;
+		$('#gps_viteza').text(gps_viteza);
+
+
+
+
+
+
+
+		var ora = parseInt(data.slice(146,148), 10);
+		var min = parseInt(data.slice(144,146), 10);
+		var sec = parseInt(data.slice(142,144), 10);
+
+		var timpul = ora + ':' + min + ':'+ sec;
+
+	    $('#ora').text(timpul);
+
+
+	});
+    </script>
+    <div style="position:fixed;margin:auto;">
+		  <table valign = "center" style="width:300px; margin:auto; background-color:#d98dc1">
+		    	<tr>
+		    		<td>
+		    			<p><b>Locomotiva : Stand </b></p>
+		    		</td>
+		    		<td id = "ora">
+		    			
+		    		</td>
+		    	</tr>
+		    </table>
+    </div>
+  	<div>
+ 	<table class = "TFtable" style= "width:100%" >  
+ 	<tr>
+   	     <td colspan = "3">
+   			<table style= "width:100%" >
+			  <tr>
+			    <th style="width:50%; background-color:#5f9ea0;" colspan = "2">Date IVMS</th>
+			
+			  </tr>
+			  <tr>
+			    <td style = "width:50%">Viteza</td>
+			    <td  style = "width:50%" aligb="left">122</td> 
+			  </tr>
+			  <tr>
+			    <td >Data</td>
+			    <td id = "ivms_data">03-12-2014</td> 
+			  </tr>
+			
+			  <tr>
+			    <td>Inp.bin 1</td>
+			    <td id = "ivms_inp_bin_1"></td> 
+			  </tr>
+			  <tr>
+			    <td >Inp.bin 2</td>
+			    <td id = "ivms_inp_bin_2"></td> 
+			  </tr>
+			  <tr>
+			    <td >Cons.P</td>
+			    <td id ="ivms_cons_a"></td> 
+			  </tr>
+			  <tr>
+			    <td >Tren</td>
+			    <td id = "ivms_tren"></td> 
+			  </tr>
+			  <tr>
+			    <td >Tone</td>
+			    <td id = "ivms_tone" ></td> 
+			  </tr>
+			   <tr>
+			    <td >Osii</td>
+			    <td id = "ivms_osii"></td> 
+			  </tr>
+			   <tr>
+			    <td >Mecanic</td>
+			    <td id = "ivms_mecanic"></td> 
+			  </tr>
+			   <tr>
+			    <td >Nr. Loco</td>
+			    <td id = "ivms_nrLoco"></td> 
+			  </tr>
+			   <tr>
+			    <td >Diametru</td>
+			    <td id = "ivms_diametru"></td> 
+			  </tr>
+			   <tr>
+			    <td >Putere</td>
+			    <td id = "ivms_putere"></td> 
+			  </tr>
+			</table>   	
+   	</td>
+
+      <td valign  ="top" colspan = "3">
+      	<table style= "width:100%">
+		  <tr>
+		   <th style=" background-color:#5f9ea0;" colspan = "2">Date GPS</th>
+		  </tr>
+		  <tr>
+			    <td >Data GPS</td>
+			    <td  id = "gps_data"></td> 
+		  </tr>
+		   <tr>
+			    <td >Ora GPS</td>
+			    <td  id = "gps_timp"></td> 
+		  </tr>
+		  <tr>
+			    <td >Latitudine</td>
+			    <td id = "gps_lat" ></td> 
+		  </tr>
+		  <tr>
+			    <td >Longitudine</td>
+			    <td  id = "gps_long"></td> 
+		  </tr>
+		  <tr>
+			    <td >Altitudine</td>
+			    <td id = "gps_altitudine"  >122</td> 
+		  </tr>
+		  <tr>
+			    <td >Curs</td>
+			    <td id = "gps_curs"></td> 
+		  </tr>
+		  <tr>
+			    <td >Viteza GPS</td>
+			    <td id = "gps_viteza" ></td> 
+		  </tr>
+		  </tr>
+		</table>
+ </td>
+</tr>
+   		<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%; padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box0</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >Stare Ceta</td>
+			    <td id = "s1_stare_ceta"></td> 
+			    <td id = "s2_stare_ceta"></td> 	
+			    <td id = "s3_stare_ceta"></td> 	
+			    <td id = "s4_stare_ceta"></td> 	
+			    <td id = "s5_stare_ceta"></td> 	
+			    <td id = "s6_stare_ceta"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Stare Stare</td>
+			    <td id = "s1_stare_stare"></td>
+			    <td id = "s2_stare_stare"></td> 	
+			    <td id = "s3_stare_stare"></td> 	
+			    <td id = "s4_stare_stare"></td> 	
+			    <td id = "s5_stare_stare"></td> 	
+			    <td id = "s6_stare_stare"></td> 	 			    
+			  </tr>
+			  <tr>
+			    <td >Stare 4qc3ph</td>
+			    <td id = "s1_stare_4qc3ph"></td> 
+			    <td id = "s2_stare_4qc3ph"></td> 	
+			    <td id = "s3_stare_4qc3ph"></td> 	
+			    <td id = "s4_stare_4qc3ph"></td> 	
+			    <td id = "s5_stare_4qc3ph"></td> 	
+			    <td id = "s6_stare_4qc3ph"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Bloc Soft</td>
+			    <td id = "s1_bloc_soft"></td> 	
+			    <td id = "s2_bloc_soft"></td> 	
+			    <td id = "s3_bloc_soft"></td> 	
+			    <td id = "s4_bloc_soft"></td> 	
+			    <td id = "s5_bloc_soft"></td> 	
+			    <td id = "s6_bloc_soft"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >Bloc Hard</td>
+			    <td id = "s1_bloc_hard"></td> 
+			    <td id = "s2_bloc_hard"></td> 	
+			    <td id = "s3_bloc_hard"></td> 	
+			    <td id = "s4_bloc_hard"></td> 	
+			    <td id = "s5_bloc_hard"></td> 	
+			    <td id = "s6_bloc_hard"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Deconectare Hard</td>
+			    <td id = "s1_decon_hard"></td> 
+			    <td id = "s2_decon_hard"></td> 	
+			    <td id = "s3_decon_hard"></td> 	
+			    <td id = "s4_decon_hard"></td> 	
+			    <td id = "s5_decon_hard"></td> 	
+			    <td id = "s6_decon_hard"></td> 				    
+			  </tr>
+			  <tr>
+			    <td>Inp Num</td>
+			    <td id = "s1_inp_num"></td> 		
+			    <td id = "s2_inp_num"></td> 	
+			    <td id = "s3_inp_num"></td> 	
+			    <td id = "s4_inp_num"></td> 	
+			    <td id = "s5_inp_num"></td> 	
+			    <td id = "s6_inp_num"></td> 		    
+			  </tr>
+			  <tr>
+			    <td >Tip Ceta</td>
+			    <td id = "s1_tip_ceta"></td> 		
+			    <td id = "s2_tip_ceta">0x20</td> 	
+			    <td id = "s3_tip_ceta">0x20</td> 	
+			    <td id = "s4_tip_ceta">0x20</td> 	
+			    <td id = "s5_tip_ceta">0x20</td> 	
+			    <td id = "s6_tip_ceta">0x20</td> 		    
+			  </tr>
+
+			</table>
+
+   	  </td>
+	</tr>
+
+	   		<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box1</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >U_cat</td>
+			    <td id = "s1_u_cat"></td> 
+			    <td id = "s2_u_cat"></td> 	
+			    <td id = "s3_u_cat"></td> 	
+			    <td id = "s4_u_cat"></td> 	
+			    <td id = "s5_u_cat"></td> 	
+			    <td id = "s6_u_cat"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >I_in</td>
+			    <td id = "s1_i_in_s1_irfm"></td>
+			    <td id = "s2_i_in_s2_irfm"></td> 	
+			    <td id = "s3_i_in_s3_irfm"></td> 	
+			    <td id = "s4_i_in_s4_irfm"></td> 	
+			    <td id = "s5_i_in_s5_irfm"></td> 	
+			    <td id = "s6_i_in_s6_irfm"></td> 	 			    
+			  </tr>
+			  <tr>
+			    <td >I_irfm</td>
+			    <td id = "s1_irfm"></td> 
+			    <td id = "s2_irfm"></td> 	
+			    <td id = "s3_irfm"></td> 	
+			    <td id = "s4_irfm"></td> 	
+			    <td id = "s5_irfm"></td> 	
+			    <td id = "s6_irfm"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >U_cc</td>
+			    <td id = "s1_u_cc"></td> 	
+			    <td id = "s2_u_cc"></td> 	
+			    <td id = "s3_u_cc"></td> 	
+			    <td id = "s4_u_cc"></td> 	
+			    <td id = "s5_u_cc"></td> 	
+			    <td id = "s6_u_cc"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >U_sa</td>
+			    <td id = "s1_u_sa"></td> 
+			    <td id = "s2_u_sa"></td> 	
+			    <td id = "s3_u_sa"></td> 	
+			    <td id = "s4_u_sa"></td> 	
+			    <td id = "s5_u_sa"></td> 	
+			    <td id = "s6_u_sa"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >I_out</td>
+			    <td id = "s1_i_out"></td> 
+			    <td id = "s2_i_out"></td> 	
+			    <td id = "s3_i_out"></td> 	
+			    <td id = "s4_i_out"></td> 	
+			    <td id = "s5_i_out"></td> 	
+			    <td id = "s6_i_out"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >V_Cda</td>
+			    <td id = "s1_v_cda"></td> 		
+			    <td id = "s2_v_cda"></td> 	
+			    <td id = "s3_v_cda"></td> 	
+			    <td id = "s4_v_cda"></td> 	
+			    <td id = "s5_v_cda"></td> 	
+			    <td id = "s6_v_cda"></td> 		    
+			  </tr>
+			
+
+			</table>
+
+   	  </td>
+	</tr>
+
+		   		<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box2</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >Turatie</td>
+			    <td id = "s1_turatie"></td> 
+			    <td id = "s2_turatie"></td> 	
+			    <td id = "s3_turatie"></td> 	
+			    <td id = "s4_turatie"></td> 	
+			    <td id = "s5_turatie"></td> 	
+			    <td id = "s6_turatie"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Forta_Cda</td>
+			    <td id = "s1_forta_cda"></td>
+			    <td id = "s2_forta_cda"></td> 	
+			    <td id = "s3_forta_cda"></td> 	
+			    <td id = "s4_forta_cda"></td> 	
+			    <td id = "s5_forta_cda"></td> 	
+			    <td id = "s6_forta_cda"></td> 	 			    
+			  </tr>
+			  <tr>
+			    <td >Iq_mas</td>
+			    <td id ="s1_iq_mas"></td> 
+			    <td id = "s2_iq_mas"></td> 	
+			    <td id = "s3_iq_mas"></td> 	
+			    <td id = "s4_iq_mas"></td> 	
+			    <td id = "s5_iq_mas"></td> 	
+			    <td id = "s6_iq_mas"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Id_mas</td>
+			    <td id ="s1_id_mas"></td> 
+			    <td id = "s2_id_mas"></td> 	
+			    <td id = "s3_id_mas"></td> 	
+			    <td id = "s4_id_mas"></td> 	
+			    <td id = "s5_id_mas"></td> 	
+			    <td id = "s6_id_mas"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Cauza_Bloc_Hard</td>
+			    <td id = "s1_cauza_bloc_hard"></td> 	
+			    <td id = "s2_cauza_bloc_hard"></td> 	
+			    <td id = "s3_cauza_bloc_hard"></td> 	
+			    <td id = "s4_cauza_bloc_hard"></td> 	
+			    <td id = "s5_cauza_bloc_hard"></td> 	
+			    <td id = "s6_cauza_bloc_hard"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >Cauza_Bloc_Soft</td>
+			    <td id = "s1_cauza_bloc_soft"></td> 
+			    <td id = "s2_cauza_bloc_soft"></td> 	
+			    <td id = "s3_cauza_bloc_soft"></td> 	
+			    <td id = "s4_cauza_bloc_soft"></td> 	
+			    <td id = "s5_cauza_bloc_soft"></td> 	
+			    <td id = "s6_cauza_bloc_soft"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Cauza_decon</td>
+			    <td id = "s1_cauza_decon">2.23</td> 
+			    <td id = "s2_cauza_decon">3.45</td> 	
+			    <td id = "s3_cauza_decon">3.4</td> 	
+			    <td id = "s4_cauza_decon">0</td> 	
+			    <td id = "s5_cauza_decon">4</td> 	
+			    <td id = "s6_cauza_decon">3</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Def_preinc</td>
+			    <td "id = s1_def_preinc"></td> 		
+			    <td "id = s2_def_preinc"></td> 	
+			    <td "id = s3_def_preinc"></td> 	
+			    <td "id = s4_def_preinc"></td> 	
+			    <td "id = s5_def_preinc"></td> 	
+			    <td "id = s6_def_preinc"></td> 		    
+			  </tr>
+			</table>
+   	  </td>
+	</tr>
+			   		<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box3</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td  >Def_drv1</td>
+			    <td id = "s1_def_drv1"></td> 
+			    <td id = "s2_def_drv1"></td> 	
+			    <td id = "s3_def_drv1"></td> 	
+			    <td id = "s4_def_drv1"></td> 	
+			    <td id = "s5_def_drv1"></td> 	
+			    <td id = "s6_def_drv1"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Stare_drv1</td>
+			    <td id = "s1_stare_drv1">223.3</td>
+			    <td id = "s2_stare_drv1">023.2</td> 	
+			    <td id = "s3_stare_drv1">0233.2</td> 	
+			    <td id = "s4_stare_drv1">023.22</td> 	
+			    <td id = "s5_stare_drv1">0.232</td> 	
+			    <td id = "s6_stare_drv1">0.232</td> 	 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_l1</td>
+			    <td id = "s1_temp_l1"></td> 
+			    <td id = "s2_temp_l1"></td> 	
+			    <td id = "s3_temp_l1"></td> 	
+			    <td id = "s4_temp_l1"></td> 	
+			    <td id = "s5_temp_l1"></td> 	
+			    <td id = "s6_temp_l1"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Temp_h1</td>
+			    <td id = "s1_temp_h1"></td> 	
+			    <td id = "s2_temp_h1"></td> 	
+			    <td id = "s3_temp_h1"></td> 	
+			    <td id = "s4_temp_h1"></td> 	
+			    <td id = "s5_temp_h1"></td> 	
+			    <td id = "s6_temp_h1"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >Def_drv2</td>
+			    <td id = "s1_def_drv2"></td> 
+			    <td id = "s2_def_drv2"></td> 	
+			    <td id = "s3_def_drv2"></td> 	
+			    <td id = "s4_def_drv2"></td> 	
+			    <td id = "s5_def_drv2"></td> 	
+			    <td id = "s6_def_drv2"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Stare_drv2</td>
+			    <td id = "s1_stare_drv2"></td> 
+			    <td id = "s2_stare_drv2"></td> 	
+			    <td id = "s3_stare_drv2"></td> 	
+			    <td id = "s4_stare_drv2"></td> 	
+			    <td id = "s5_stare_drv2"></td> 	
+			    <td id = "s6_stare_drv2"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_l2</td>
+			    <td id = "s1_temp_l2"></td> 
+			    <td id = "s2_temp_l2"></td> 	
+			    <td id = "s3_temp_l2"></td> 	
+			    <td id = "s4_temp_l2"></td> 	
+			    <td id = "s5_temp_l2"></td> 	
+			    <td id = "s6_temp_l2"></td> 	
+			  </tr>
+			  <tr>
+			    <td >Temp_h2</td>
+			    <td id = "s1_temp_h2"></td> 	
+			    <td id = "s2_temp_h2"></td> 	
+			    <td id = "s3_temp_h2"></td> 	
+			    <td id = "s4_temp_h2"></td> 	
+			    <td id = "s5_temp_h2"></td> 	
+			    <td id = "s6_temp_h2"></td> 		
+			  </tr>
+			</table>
+
+   	  </td>
+	</tr>
+				   		<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box4</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >Def_drv3</td>
+			    <td id = "s1_def_drv3"></td> 
+			    <td id = "s2_def_drv3"></td> 	
+			    <td id = "s3_def_drv3"></td> 	
+			    <td id = "s4_def_drv3"></td> 	
+			    <td id = "s5_def_drv3"></td> 	
+			    <td id = "s6_def_drv3"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Stare_drv3</td>
+			    <td id = "s1_stare_drv3"></td> 
+			    <td id = "s2_stare_drv3"></td> 	
+			    <td id = "s3_stare_drv3"></td> 	
+			    <td id = "s4_stare_drv3"></td> 	
+			    <td id = "s5_stare_drv3"></td> 	
+			    <td id = "s6_stare_drv3"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_l3</td>
+			    <td id = "s1_temp_l3"></td> 
+			    <td id = "s2_temp_l3"></td> 	
+			    <td id = "s3_temp_l3"></td> 	
+			    <td id = "s4_temp_l3"></td> 	
+			    <td id = "s5_temp_l3"></td> 	
+			    <td id = "s6_temp_l3"></td> 	  
+			  </tr>
+			  <tr>
+			    <td >Temp_h3</td>
+			    <td id = "s1_temp_h3"></td> 	
+			    <td id = "s2_temp_h3"></td> 	
+			    <td id = "s3_temp_h3"></td> 	
+			    <td id = "s4_temp_h3"></td> 	
+			    <td id = "s5_temp_h3"></td> 	
+			    <td id = "s6_temp_h3"></td> 	   
+			  </tr>
+			  <tr>
+			    <td >Def_drv4</td>
+			    <td id = "s1_def_drv4"></td> 
+			    <td id = "s2_def_drv4"></td> 	
+			    <td id = "s3_def_drv4"></td> 	
+			    <td id = "s4_def_drv4"></td> 	
+			    <td id = "s5_def_drv4"></td> 	
+			    <td id = "s6_def_drv4"></td> 		 
+			  </tr>
+			  <tr>
+			    <td >Stare_drv4</td>
+			    <td id = "s1_stare_drv4"></td> 
+			    <td id = "s2_stare_drv4"></td> 	
+			    <td id = "s3_stare_drv4"></td> 	
+			    <td id = "s4_stare_drv4"></td> 	
+			    <td id = "s5_stare_drv4"></td> 	
+			    <td id = "s6_stare_drv4"></td> 			  	    
+			  </tr>
+			  <tr>
+			    <td >Temp_l4</td>
+			    <td id = "s1_temp_l4"></td> 
+			    <td id = "s2_temp_l4"></td> 	
+			    <td id = "s3_temp_l4"></td> 	
+			    <td id = "s4_temp_l4"></td> 	
+			    <td id = "s5_temp_l4"></td> 	
+			    <td id = "s6_temp_l4"></td> 	  
+			  </tr>
+			  <tr>
+			    <td >Temp_h4</td>
+			    <td id = "s1_temp_h4"></td> 	
+			    <td id = "s2_temp_h4"></td> 	
+			    <td id = "s3_temp_h4"></td> 	
+			    <td id = "s4_temp_h4"></td> 	
+			    <td id = "s5_temp_h4"></td> 	
+			    <td id = "s6_temp_h4"></td> 	  
+			  </tr>
+			</table>
+
+   	  </td>
+	</tr>
+					   		<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box5</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >Def_drv5</td>
+			    <td id = "s1_def_drv5"></td> 
+			    <td id = "s2_def_drv5"></td> 	
+			    <td id = "s3_def_drv5"></td> 	
+			    <td id = "s4_def_drv5"></td> 	
+			    <td id = "s5_def_drv5"></td> 	
+			    <td id = "s6_def_drv5"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >Stare_drv5</td>
+			    <td id = "s1_stare_drv5"></td> 
+			    <td id = "s2_stare_drv5"></td> 	
+			    <td id = "s3_stare_drv5"></td> 	
+			    <td id = "s4_stare_drv5"></td> 	
+			    <td id = "s5_stare_drv5"></td> 	
+			    <td id = "s6_stare_drv5"></td> 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_l5</td>
+			    <td id = "s1_temp_l5"></td> 
+			    <td id = "s2_temp_l5"></td> 	
+			    <td id = "s3_temp_l5"></td> 	
+			    <td id = "s4_temp_l5"></td> 	
+			    <td id = "s5_temp_l5"></td> 	
+			    <td id = "s6_temp_l5"></td> 		    
+			  </tr>
+			  <tr>
+			    <td >Temp_h5</td>
+			    <td id = "s1_temp_h5"></td> 	
+			    <td id = "s2_temp_h5"></td> 	
+			    <td id = "s3_temp_h5"></td> 	
+			    <td id = "s4_temp_h5"></td> 	
+			    <td id = "s5_temp_h5"></td> 	
+			    <td id = "s6_temp_h5"></td> 		    
+			  </tr>
+			  <tr>
+			    <td >Def_drv6</td>
+			    <td id = "s1_def_drv6"></td> 
+			    <td id = "s2_def_drv6"></td> 	
+			    <td id = "s3_def_drv6"></td> 	
+			    <td id = "s4_def_drv6"></td> 	
+			    <td id = "s5_def_drv6"></td> 	
+			    <td id = "s6_def_drv6"></td> 				    
+			  </tr>
+			  <tr>
+			  	<td >Stare_Drv6</td>
+			    <td id = "s1_stare_drv6"></td> 
+			    <td id = "s2_stare_drv6"></td> 	
+			    <td id = "s3_stare_drv6"></td> 	
+			    <td id = "s4_stare_drv6"></td> 	
+			    <td id = "s5_stare_drv6"></td> 	
+			    <td id = "s6_stare_drv6"></td> 	    
+			  </tr>
+			  <tr>
+			    <td >Temp_l6</td>
+			    <td id = "s1_temp_l6"></td> 
+			    <td id = "s2_temp_l6"></td> 	
+			    <td id = "s3_temp_l6"></td> 	
+			    <td id = "s4_temp_l6"></td> 	
+			    <td id = "s5_temp_l6"></td> 	
+			    <td id = "s6_temp_l6"></td> 	    
+			  </tr>
+			  <tr>
+			    <td >Temp_h6</td>
+			    <td id = "s1_temp_h6"></td> 	
+			    <td id = "s2_temp_h6"></td> 	
+			    <td id = "s3_temp_h6"></td> 	
+			    <td id = "s4_temp_h6"></td> 	
+			    <td id = "s5_temp_h6"></td> 	
+			    <td id = "s6_temp_h6"></td> 	   
+			  </tr>
+			</table>
+   	  </td>
+	</tr>
+			<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box6</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >U_drv</td>
+			    <td id = "s1_u_drv"></td> 
+			    <td id = "s2_u_drv"></td> 	
+			    <td id = "s3_u_drv"></td> 	
+			    <td id = "s4_u_drv"></td> 	
+			    <td id = "s5_u_drv"></td> 	
+			    <td id = "s6_u_drv"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Dsp_drv</td>
+			    <td id = "s1_dsp_drv"></td>
+			    <td id = "s2_dsp_drv"></td> 	
+			    <td id = "s3_dsp_drv"></td> 	
+			    <td id = "s4_dsp_drv"></td> 	
+			    <td id = "s5_dsp_drv"></td> 	
+			    <td id = "s6_dsp_drv"></td> 	 			    
+			  </tr>
+			  <tr>
+			    <td >Trip_14</td>
+			    <td id = "s1_trip_14"></td> 
+			    <td id = "s2_trip_14"></td> 	
+			    <td id = "s3_trip_14"></td> 	
+			    <td id = "s4_trip_14"></td> 	
+			    <td id = "s5_trip_14"></td> 	
+			    <td id = "s6_trip_14"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Trip_56</td>
+			    <td id = "s1_trip_56">0</td> 	
+			    <td id = "s2_trip_56">0</td> 	
+			    <td id = "s3_trip_56">0</td> 	
+			    <td id = "s4_trip_56">0</td> 	
+			    <td id = "s5_trip_56">0</td> 	
+			    <td id = "s6_trip_56">0</td> 			    
+			  </tr>
+			  <tr>
+			    <td >Stare_mm</td>
+			    <td id = "s1_stare_mm"></td> 
+			    <td id = "s2_stare_mm" ></td> 	
+			    <td id = "s3_stare_mm"></td> 	
+			    <td id = "s4_stare_mm"></td> 	
+			    <td id = "s5_stare_mm"></td> 	
+			    <td id = "s6_stare_mm"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Inp_63</td>
+			    <td id = "s1_inp_63" ></td> 
+			    <td id = "s2_inp_63"></td> 	
+			    <td id = "s3_inp_63"></td> 	
+			    <td id = "s4_inp_63"></td> 	
+			    <td id = "s5_inp_63"></td> 	
+			    <td id = "s6_inp_63"></td> 				    
+			  </tr>
+			  <tr>
+			    <td >Defect_can_drv</td>
+			    <td id = "s1_defect_can_drv"></td> 		
+			    <td id = "s2_defect_can_drv"></td> 	
+			    <td id = "s3_defect_can_drv"></td> 	
+			    <td id = "s4_defect_can_drv"></td> 	
+			    <td id = "s5_defect_can_drv"></td> 	
+			    <td id = "s6_defect_can_drv"></td> 		    
+			  </tr>
+			  <tr>
+			    <td >Stare_abs</td>
+			    <td id = "s1_stare_abs"></td> 		
+			    <td id = "s2_stare_abs"></td> 	
+			    <td id = "s3_stare_abs"></td> 	
+			    <td id = "s4_stare_abs"></td> 	
+			    <td id = "s5_stare_abs"></td> 	
+			    <td id = "s6_stare_abs"></td> 		    
+			  </tr>
+			</table>
+
+   	  </td>
+	</tr>
+		<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;" >
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box7</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >Temp_Mt2</td>
+			    <td id = "s1_temp_mt2"></td> 
+			    <td >2112.19</td> 	
+			    <td >123.0</td> 	
+			    <td >2323</td> 	
+			    <td >3432</td> 	
+			    <td >122.92</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Temp_Mt1</td>
+			    <td >223.3</td>
+			    <td >023.2</td> 	
+			    <td >0233.2</td> 	
+			    <td >023.22</td> 	
+			    <td >0.232</td> 	
+			    <td >0.232</td> 	 			    
+			  </tr>
+			  <tr>
+			    <td >Nivel_Apa</td>
+			    <td >023.2</td> 
+			    <td >0.0</td> 	
+			    <td >0.0</td> 	
+			    <td >0.0</td> 	
+			    <td >0.90</td> 	
+			    <td >0.0</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Temp_Mt3</td>
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_Apa_R</td>
+			    <td >22.83</td> 
+			    <td >92.1</td> 	
+			    <td >209.0</td> 	
+			    <td >0</td> 	
+			    <td >0.092</td> 	
+			    <td >0</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Temp_Apa_C</td>
+			    <td >2.23</td> 
+			    <td >3.45</td> 	
+			    <td >3.4</td> 	
+			    <td >0</td> 	
+			    <td >4</td> 	
+			    <td >3</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Pres_aer_rad</td>
+			    <td >020</td> 		
+			    <td >0.09</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 		    
+			  </tr>
+			  <tr>
+			    <td >Pres_apa</td>
+			    <td >020</td> 		
+			    <td >fara cauza</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 		    
+			  </tr>
+			
+
+			</table>
+
+   	  </td>
+	</tr>
+
+			<tr>
+   			<td colspan = "6">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px;">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Box8</th>
+			    <th align = "left" style = "width:8%;">S1</th> 
+			    <th align = "left" style = "width:8%;">S2</th>
+			    <th align = "left" style = "width:8%;">S3</th>
+			    <th align = "left" style = "width:8%;">S4</th>
+			    <th align = "left" style = "width:8%;">S5</th>
+			    <th align = "left" style = "width:8%;">S6</th>
+			  </tr>
+			  <tr>
+			    <td >Temp_Aer_Mt</td>
+			    <td >0x05</td> 
+			    <td >2112.19</td> 	
+			    <td >123.0</td> 	
+			    <td >2323</td> 	
+			    <td >3432</td> 	
+			    <td >122.92</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Pres_Aer_Mt</td>
+			    <td >223.3</td>
+			    <td >023.2</td> 	
+			    <td >0233.2</td> 	
+			    <td >023.22</td> 	
+			    <td >0.232</td> 	
+			    <td >0.232</td> 	 			    
+			  </tr>
+			  <tr>
+			    <td >Inp_Num_Abs</td>
+			    <td >023.2</td> 
+			    <td >0.0</td> 	
+			    <td >0.0</td> 	
+			    <td >0.0</td> 	
+			    <td >0.90</td> 	
+			    <td >0.0</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Umid_Aer_Mt</td>
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 	
+			    <td >0</td> 			    
+			  </tr>
+			  <tr>
+			    <td >Vibr_Y</td>
+			    <td >22.83</td> 
+			    <td >92.1</td> 	
+			    <td >209.0</td> 	
+			    <td >0</td> 	
+			    <td >0.092</td> 	
+			    <td >0</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Vibr_X</td>
+			    <td >2.23</td> 
+			    <td >3.45</td> 	
+			    <td >3.4</td> 	
+			    <td >0</td> 	
+			    <td >4</td> 	
+			    <td >3</td> 				    
+			  </tr>
+			  <tr>
+			    <td >Ipm</td>
+			    <td >020</td> 		
+			    <td >0.09</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 	
+			    <td >0.20</td> 		    
+			  </tr>
+			</table>
+
+   	  </td>
+	</tr>
+		<tr>
+   		  <td  style="width:25%;" >
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Auxiliare1</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+	
+			  </tr>
+			  <tr>
+			    <td >Stare13</td>
+			    <td >0x05</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >Stare45</td>
+			    <td >223.3</td>
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Stare_compr</td>
+			    <td >023.2</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >Stare_vent_trac</td>
+			    <td >0</td> 	
+		    
+			  </tr>
+			  <tr>
+			    <td >stare_vent_frin</td>
+			    <td >22.83</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >Ok13cs</td>
+			    <td >2.23</td> 
+		    
+			  </tr>
+			  <tr>
+			    <td >Ok13k</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >Ok45</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >Def_cs15</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >Def_can_module</td>
+			    <td >020</td> 		
+			</tr>
+			</table>
+
+   	  </td>
+   	     		  <td  style="width:25%;">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Inp_num</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+	
+			  </tr>
+			  <tr>
+			    <td >inp_num_0</td>
+			    <td >0x05</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >inp_num_1</td>
+			    <td >223.3</td>
+	 			    
+			  </tr>
+			  <tr>
+			    <td >inp_num_2</td>
+			    <td >023.2</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >inp_num_3</td>
+			    <td >0</td> 	
+		    
+			  </tr>
+			  <tr>
+			    <td >inp_num_4</td>
+			    <td >22.83</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >inp_num_5</td>
+			    <td >2.23</td> 
+		    
+			  </tr>
+			  <tr>
+			    <td >inp_num_6</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >inp_num_7</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >inp_num_8</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >inp_num_9</td>
+			    <td >020</td> 		
+			</tr>
+			</table>
+
+   	  </td>
+   	     <td  colspan = "2" style="width:25%;" valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">IBLE 10</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+	
+			  </tr>
+			  <tr>
+			    <td >U_in_IBLE[Vef]</td>
+			    <td >0x05</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >I_in_IBLE[Aef]</td>
+			    <td >223.3</td>
+	 			    
+			  </tr>
+			  <tr>
+			    <td >U_cc_IBLE[Vcc]</td>
+			    <td >023.2</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >U_out_IBLE[Vcc]</td>
+			    <td >0</td> 	
+		    
+			  </tr>
+			  <tr>
+			    <td >I_out_IBLE[Acc]</td>
+			    <td >22.83</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >I_bat_IBLE[Acc]</td>
+			    <td >2.23</td> 
+		    
+			  </tr>
+			  <tr>
+			    <td >Temp_PFC_IBLE[gC]</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >Temp_PWM_IBLE[gC]</td>
+			    <td >020</td> 		
+			</tr>
+			<tr>
+			    <td >Temp_Trafo_IBLE[gC]</td>
+			    <td ></td> 		
+			</tr>
+			<tr>
+			    <td ></td>
+			    <td ></td> 		
+			</tr>
+			</table>
+
+   	  </td>
+   	    <td  colspan = "2" style="width:25%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">IMTO</th>
+			    <th align = "left" style = "width:8%;">St</th> 
+			    <th align = "left" style = "width:8%;">Dr</th> 
+	
+			  </tr>
+			  <tr>
+			    <td >Osia 1</td>
+			    <td >0x05</td> 
+			    <td >0x05</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >Osia 2</td>
+			    <td >223.3</td>
+			    <td >0x05</td> 
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Osia 3</td>
+			    <td >023.2</td> 
+			    <td >023.2</td>
+			    
+			  </tr>
+			  <tr>
+			    <td >Osia 4</td>
+			    <td >0</td> 
+			    <td >0</td> 	
+		    
+			  </tr>
+			  <tr>
+			    <td >Osia 5</td>
+			    <td >22.83</td> 
+			    <td >22.83</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >Osia 6</td>
+			    <td >2.23</td> 
+			    <td >22.83</td> 
+		    
+			  </tr>
+			  <tr>
+			    <td >Sasiu</td>
+			    <td >020</td> 
+			    <td >020</td> 			
+			</tr>
+		
+			</table>
+
+   	  </td>
+	</tr>
+			<tr>
+   		  <td  valign = "top" style="width:25%;" >
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Auxiliare2</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+	
+			  </tr>
+			  <tr>
+			    <td >Temp_Amb_Sala[gc]</td>
+			    <td >27</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >U_in_mediu[Vef]</td>
+			    <td >411.35</td>
+	 			    
+			  </tr>
+			  <tr>
+			    <td >I_in_mediu</td>
+			    <td >148</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >I_pm_mediu</td>
+			    <td >4.890</td> 	
+		    
+			  </tr>
+			 
+			</table>
+
+   	  </td>
+   	  
+
+   	   <td  valign = "top" style="width:25%;">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Out_num</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+	
+			  </tr>
+			  <tr>
+			    <td >out_num_0</td>
+			    <td >0x05</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >out_num_1</td>
+			    <td >223.3</td>
+	 			    
+			  </tr>
+			  <tr>
+			    <td >out_num_2</td>
+			    <td >023.2</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >out_num_3</td>
+			    <td >0</td> 	
+		    
+			  </tr>
+			  <tr>
+			    <td >out_num_4</td>
+			    <td >22.83</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >out_num_5</td>
+			    <td >2.23</td> 
+		    
+			  </tr>
+			 
+			</table>
+
+   	  </td>
+   	     <td  colspan = "2" style="width:25%;" valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">IBLE</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+	
+			  </tr>
+			  <tr>
+			    <td >Stari_IBLE</td>
+			    <td >0x05</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >Lim_cauza_soft_IBLE</td>
+			    <td >223.3</td>
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Cauza_bloc_hard_IBLE</td>
+			    <td >023.2</td> 
+			    
+			  </tr>
+			  <tr>
+			    <td >Bloc_hard_IBLE</td>
+			    <td >0</td> 	
+		    
+			  </tr>
+			  
+			</table>
+
+   	  </td>
+
+   	    <td  colspan = "2" style="width:25%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Mansa Act</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			  </tr>
+			  <tr>
+			    <td >Mansa activa numerice</td>
+			    <td id  = "mansa_activa_numerice"></td> 
+			  </tr>
+			  <tr>
+			    <td >Mansa activa forta</td>
+			    <td id = "mansa_activa_forta"></td>
+			  </tr>
+			  <tr>
+			    <td >Mansa activa viteza</td>
+			    <td id = "mansa_activa_viteza"></td> 
+			  </tr>
+			  <tr>
+			    <td >Viteza impusa</td>
+			    <td id = "viteza_impusa">0</td> 
+			  </tr>
+			</table>
+   	  </td>
+	</tr>
+
+	<tr>
+		  <td   colspan ="2" style="width:25%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">INP_NUM</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_0</td>
+			    <td id = "Inp_num_0"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_1</td>
+			    <td id = "Inp_num_1" ></td>
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_2</td>
+			    <td id = "Inp_num_2"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_3</td>
+			    <td id = "Inp_num_3"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_4</td>
+			    <td id = "Inp_num_4"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_5</td>
+			    <td id = "Inp_num_5"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_6</td>
+			    <td id = "Inp_num_6"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_7</td>
+			    <td id = "Inp_num_7"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_8</td>
+			    <td id = "Inp_num_8"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_9</td>
+			    <td id = "Inp_num_9"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_10</td>
+			    <td id = "Inp_num_10"></td> 
+			  </tr>
+			  <tr>
+			    <td >INP_NUM_11</td>
+			    <td id = "Inp_num_11"></td> 
+			  </tr>
+
+			</table>
+
+   	  </td>
+   	  	  <td   colspan = "4" valign = "top"  rowspan = "2" style="width:25%">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Icol</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			  </tr>
+			  <tr>
+			    <td >U_cat [kVef]</td>
+			    <td id = "ucat">0x05</td> 			    
+			  </tr>
+			  <tr>
+			    <td >U_sa [Vef]</td>
+			    <td id = "usa">223.3</td>
+			  </tr>
+			  <tr>
+			    <td >I_cat [Aef]</td>
+			    <td id - "icat">023.2</td> 
+			  </tr>
+			  <tr>
+			    <td >I_tren [Aef] </td>
+			    <td id = "itren">0</td> 
+			  </tr>
+			  <tr>
+			    <td id = "ibat">I_bat [A]</td>
+			    <td >no conn.</td> 
+			  </tr>
+			  <tr>
+			    <td >P_cg [bar]</td>
+			    <td id = "p_cg" >no.conn</td> 
+			  </tr>
+			  <tr>
+			    <td >Vit1 [km/h]</td>
+			    <td id = 'vit1'>no.conn</td> 
+			  </tr>
+			  <tr>
+			    <td >Vit2 [km/h] </td>
+			    <td id  ="vit2" >no conn.</td> 
+			  </tr>
+			  <tr>
+			    <td >Temperatura trafo 2 [gC]</td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Stare Forta</td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Stare Tractiune</td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Turatie min_trac [rpm] </td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Turatie max_trac [rpm] </td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Turatie max_notrac [rpm] </td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Info1 </td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Info2 </td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Forta cda icol [kN] </td>
+			    <td >0</td> 			   
+			  </tr>
+
+			  <tr>
+			    <td >Info3</td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Ack_tdd</td>
+			    <td >0</td> 			   
+			  </tr>
+			  <tr>
+			    <td >Can_def</td>
+			    <td >0</td> 			   
+			  </tr>
+			</table>
+
+   	  </td>
+
+
+	</tr>
+	<tr>
+		 <td   colspan = "2" style="width:25%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">OUT_NUM</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >OUT_NUM_0</td>
+			    <td id = "Out_num_0" ></td> 
+			  </tr>
+			  <tr>
+			    <td >OUT_NUM_1</td>
+			    <td id = "Out_num_1"></td>
+			  </tr>
+			  <tr>
+			    <td >OUT_NUM_2</td>
+			    <td id = "Out_num_2"></td> 
+			  </tr>
+			  <tr>
+			    <td >OUT_NUM_3</td>
+			    <td id = "Out_num_3"></td> 
+			  </tr>
+			  <tr>
+			    <td >OUT_NUM_4</td>
+			    <td id = "Out_num_4"></td> 
+			  </tr>
+			  <tr>
+			    <td >OUT_NUM_5</td>
+			    <td id = "Out_num_5"></td> 
+			  </tr>
+			</table>
+
+   	  </td>
+	</tr>
+	<tr>
+		 <td    style="width:17%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Lente0</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >P_cat [kW]</td>
+			    <td >0x05</td> 
+			    
+			    
+			  </tr>
+			  <tr>
+			    <td >P_sa [kW]</td>
+			    <td >223.3</td>
+			   
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_trafo1 [gC]</td>
+			    <td >023.2</td> 
+			  
+			    
+			  </tr>
+			  <tr>
+			    <td >Temp_self [gC] </td>
+			    <td >0</td> 
+			   
+			  </tr>
+			    <tr>
+			    <td >Data </td>
+			    <td >0</td> 
+			   
+			  </tr>
+
+			</table>
+
+   	  </td>
+   	  	 <td    style="width:20%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Lente1</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >P_cat [kW]</td>
+			    <td >0x05</td> 
+			    
+			    
+			  </tr>
+			  <tr>
+			    <td >P_sa [kW]</td>
+			    <td >223.3</td>
+			   
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_trafo1 [gC]</td>
+			    <td >023.2</td> 
+			  
+			    
+			  </tr>
+			  <tr>
+			    <td >Temp_self [gC] </td>
+			    <td >0</td> 
+			   
+			  </tr>
+			    <tr>
+			    <td >Data </td>
+			    <td >0</td> 
+			   
+			  </tr>
+
+			</table>
+
+   	  </td>
+   	  	 <td    style="width:20%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Lente2</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >P_cat [kW]</td>
+			    <td >0x05</td> 
+			    
+			    
+			  </tr>
+			  <tr>
+			    <td >P_sa [kW]</td>
+			    <td >223.3</td>
+			   
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_trafo1 [gC]</td>
+			    <td >023.2</td> 
+			  
+			    
+			  </tr>
+			  <tr>
+			    <td >Temp_self [gC] </td>
+			    <td >0</td> 
+			   
+			  </tr>
+			    <tr>
+			    <td >Data </td>
+			    <td >0</td> 
+			   
+			  </tr>
+
+			</table>
+
+   	  </td>
+   	  	 <td    style="width:20%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Lente3</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >P_cat [kW]</td>
+			    <td >0x05</td> 
+			    
+			    
+			  </tr>
+			  <tr>
+			    <td >P_sa [kW]</td>
+			    <td >223.3</td>
+			   
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_trafo1 [gC]</td>
+			    <td >023.2</td> 
+			  
+			    
+			  </tr>
+			  <tr>
+			    <td >Temp_self [gC] </td>
+			    <td >0</td> 
+			   
+			  </tr>
+			    <tr>
+			    <td >Data </td>
+			    <td >0</td> 
+			   
+			  </tr>
+
+			</table>
+
+   	  </td>
+   	  	 <td    style="width:20%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Lente4</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >P_cat [kW]</td>
+			    <td >0x05</td> 
+			    
+			    
+			  </tr>
+			  <tr>
+			    <td >P_sa [kW]</td>
+			    <td >223.3</td>
+			   
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_trafo1 [gC]</td>
+			    <td >023.2</td> 
+			  
+			    
+			  </tr>
+			  <tr>
+			    <td >Temp_self [gC] </td>
+			    <td >0</td> 
+			   
+			  </tr>
+			    <tr>
+			    <td >Data </td>
+			    <td >0</td> 
+			   
+			  </tr>
+
+			</table>
+
+   	  </td>
+   	  	 <td    style="width:20%;"valign = "top">
+   			<table  cellspacing = 0 style= "width:100%;  padding :0px">
+			  <tr style="width:50%; background-color:#5f9ea0; padding :0px;" >
+			    <th align = "center" style = "width:50%;">Lente5</th>
+			    <th align = "left" style = "width:8%;">Val</th> 
+			    
+	
+			  </tr>
+			  <tr>
+			    <td >P_cat [kW]</td>
+			    <td >0x05</td> 
+			    
+			    
+			  </tr>
+			  <tr>
+			    <td >P_sa [kW]</td>
+			    <td >223.3</td>
+			   
+	 			    
+			  </tr>
+			  <tr>
+			    <td >Temp_trafo1 [gC]</td>
+			    <td >023.2</td> 
+			  
+			    
+			  </tr>
+			  <tr>
+			    <td >Temp_self [gC] </td>
+			    <td >0</td> 
+			   
+			  </tr>
+			    <tr>
+			    <td >Data </td>
+			    <td >0</td> 
+			   
+			  </tr>
+
+			</table>
+
+   	  </td>
+	</tr>
+</table>
+
+</div>
+
+
+
+
+        
+
+
+</body>
+</html>
